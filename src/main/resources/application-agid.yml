@@ -16,6 +16,10 @@ ipa:
     base: https://www.indicepa.gov.it/public-services/opendata-read-service.php
     amministrazioni: ${ipa.url.base}?dstype=FS&filename=amministrazioni.txt
 
+mail:
+  from:
+    default: concorsi@agid.gov.it
+
 hazelcast:
   port: 1234
   autoincrement: false
