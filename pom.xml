@@ -22,12 +22,12 @@
     <parent>
         <groupId>it.cnr.si.cool.jconon</groupId>
         <artifactId>cool-jconon-parent</artifactId>
-        <version>4.3.14</version>
+        <version>4.3.21-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cool-jconon-template</artifactId>
+    <artifactId>cool-jconon-agid</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Concorsi On-Line Template</name>
+    <name>Concorsi On-Line AGID</name>
 
     <properties>
         <cool.mode>development</cool.mode>
@@ -135,7 +135,7 @@
         </profile>
     </profiles>
     <build>
-        <finalName>selezioni-template</finalName>
+        <finalName>selezioni-agid</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -176,7 +176,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
                 <configuration>
-                    <warName>selezioni-template</warName>
+                    <warName>selezioni-agid</warName>
                     <!-- exclude direct copy of resources from src when using yuicompressor, see parent POM configuration -->
                     <warSourceExcludes>**/js/ws/**/*.js,**/js/cnr/**/*.js,**/js/thirdparty/**/*.js,**/*.css
                     </warSourceExcludes>
@@ -221,9 +221,9 @@
     </build>
 
     <scm>
-        <connection>scm:git:git@github.com:consiglionazionaledellericerche/cool-jconon-template.git</connection>
-        <developerConnection>scm:git:git@github.com:consiglionazionaledellericerche/cool-jconon-template.git</developerConnection>
-        <url>https://github.com/consiglionazionaledellericerche/cool-jconon-template</url>
+        <connection>scm:git:git@github.com:consiglionazionaledellericerche/cool-jconon-agid.git</connection>
+        <developerConnection>scm:git:git@github.com:consiglionazionaledellericerche/cool-jconon-agid.git</developerConnection>
+        <url>https://github.com/consiglionazionaledellericerche/cool-jconon-agid</url>
         <tag>HEAD</tag>
     </scm>
 

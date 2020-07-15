@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~    Copyright (C) 2019  Consiglio Nazionale delle Ricerche
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Affero General Public License as
+  ~     published by the Free Software Foundation, either version 3 of the
+  ~     License, or (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Affero General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Affero General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="jconon_agid:jconon_agidModel">
+    <description>JCONON AGID Model</description>
+    <author>marco.spasiano</author>
+    <version>1.0</version>
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.cnr.it/model/jconon_application/cmis" prefix="jconon_application"/>
+        <import uri="http://www.cnr.it/model/cvelement/1.0" prefix="cvelement"/>
+        <import uri="http://www.cnr.it/model/jconon_attachment/cmis" prefix="jconon_attachment" />
+    </imports>
+    <namespaces>
+        <namespace uri="http://www.agid.gov.it/model/jconon_agid/cmis" prefix="jconon_agid"/>
+    </namespaces>
+    <types>
+        <type name="jconon_agid:titoli_carriera">
+            <title>Titoli di carriera e di Servizio</title>
+            <parent>jconon_attachment:cv_element</parent>
+            <properties>
+                <property name="jconon_agid:titoli_carriera_amministrazione">
+                    <title>Ente</title>
+                    <description>a] widget:ui.amministrazioni-ipa</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+                <property name="jconon_agid:titoli_carriera_ruolo">
+                    <title>Ruolo</title>
+                    <description>b]</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+                <property name="jconon_agid:titoli_carriera_da">
+                    <title>Da</title>
+                    <description>c]</description>
+                    <type>d:datetime</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+                <property name="jconon_agid:titoli_carriera_incorso">
+                    <title>In corso</title>
+                    <description>d] ui.radio</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                    <default>false</default>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+                <property name="jconon_agid:titoli_carriera_a">
+                    <title>A</title>
+                    <description>e] class:titoli_carriera_incorso_false</description>
+                    <type>d:datetime</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+        <type name="jconon_agid:titoli_universitari">
+            <title>Titoli di studio Universitari</title>
+            <parent>jconon_attachment:cv_element</parent>
+            <properties>
+                <property name="jconon_agid:titoli_universitari_titolo">
+                    <title>Titolo</title>
+                    <description>a]</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+                <property name="jconon_agid:titoli_universitari_votazione">
+                    <title>Votazione</title>
+                    <description>b]</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+                <property name="jconon_agid:titoli_universitari_universita">
+                    <title>Università</title>
+                    <description>c] widget:ui.amministrazioni-ipa</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+                <property name="jconon_agid:titoli_universitari_anno">
+                    <title>Anno di conseguimento</title>
+                    <description>d) class:input-small</description>
+                    <type>d:int</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </type>
+    </types>
+    <aspects>
+        <aspect name="jconon_agid:aspect_abilitazione_commercialista_esperto_contabile">
+            <title>Abilitazione Dottore Commercialista ed Esperto Contabile</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_abilitazione_commercialista_esperto_contabile">
+                    <title>abilitazione all’esercizio della professione di Dottore Commercialista ed Esperto Contabile</title>
+                    <description>ui.radio</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_abilitazione_revisore_dei_conti">
+            <title>Abilitazione Revisore Legale dei Conti</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_abilitazione_revisore_dei_conti">
+                    <title>abilitazione all’esercizio della professione di Revisore Legale dei Conti</title>
+                    <description>ui.radio</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_eta_non_inferiore_diciotto">
+            <title>Età non inferiore a diciotto</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_eta_non_inferiore_diciotto">
+                    <title>di avere età non inferiore agli anni diciotto</title>
+                    <description>ui.radio</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_elettorato_politico_attivo">
+            <title>Elettorato politico attivo</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_elettorato_politico_attivo">
+                    <title>di non essere stati esclusi dall’elettorato politico attivo</title>
+                    <description>ui.radio</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_3">
+            <title>Dichiarazione 3</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_3">
+                    <title>Flag Dichiarazione 3</title>
+                    <description>Flag Dichiarazione 3 ui.radio</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_4">
+            <title>Dichiarazione 4</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_4">
+                    <title>Flag Dichiarazione 4</title>
+                    <description>Flag Dichiarazione 4 ui.radio</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
+</model>
