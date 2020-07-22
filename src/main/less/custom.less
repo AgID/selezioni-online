@@ -2,13 +2,18 @@
 @default-color: #ffffff;
 @default-border-color: #003183;
 
+body, .jumbotron {
+  font-family: "Titillium Web" ,"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
 .header, .btn-primary {
   background: @default-background-color;
 }
 
 .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus,
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled],
-.btn-group.open .btn-primary.dropdown-toggle{
+.btn-group.open .btn-primary.dropdown-toggle {
   background-color: @default-background-color;
 }
 
@@ -16,8 +21,12 @@
   color: @default-background-color;
 }
 
-.jumbotron:not(.well){
+.jumbotron:not(.well) {
   color: white!important;
+}
+
+.notMacroCall {
+  background-color: inherit;
 }
 
 .alert-info {
@@ -38,6 +47,26 @@ li.select2-highlighted > div > div > a {
   color: white!important;
 }
 
-.container, .cnr-sidenav {
+a {
+  color: #0059b3;
+}
+
+.header, #content {
   width: auto;
+}
+
+#content {
+  border: none;
+  background: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+#content > .container:not(.header), #content > .helpdesk-parent, #content > .container-fluid {
+  border: 1px solid #CCC;
+  background: #ffffff;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
