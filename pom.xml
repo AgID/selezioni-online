@@ -26,7 +26,7 @@
     </parent>
 
     <artifactId>cool-jconon-agid</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>Concorsi On-Line AGID</name>
 
     <properties>
