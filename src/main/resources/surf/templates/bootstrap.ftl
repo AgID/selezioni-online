@@ -13,6 +13,12 @@
     <meta name="description" content="${message("main.title")}">
     <meta name="author" content="">
 
+    <#if _csrf??>
+        <meta name="_csrf" content="${_csrf.token}"/>
+        <#if _csrf.headerName??>
+            <meta name="_csrf_header" content="${_csrf.headerName}"/>
+        </#if>
+    </#if>
     <!-- custom style -->
     <link href="${url.context}/res/css/cool/cool.css?v=${artifact_version}" rel="stylesheet">
     <link href="${url.context}/res/css/style.css?v=${artifact_version}" rel="stylesheet">
