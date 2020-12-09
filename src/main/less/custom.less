@@ -1,10 +1,11 @@
 @default-background-color: #0066cc;
 @default-color: #ffffff;
 @default-border-color: #003183;
+@default-font-size: 1rem;
 
 body, .jumbotron {
   font-family: "Titillium Web" ,"Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: @default-font-size;
 }
 
 .header, .btn-primary {
@@ -51,13 +52,35 @@ a {
   color: #0059b3;
 }
 
-.container, .cnr-sidenav {
+.header, #content {
   width: auto;
 }
-.ml-2, mx-2 {
-  margin-left: .5rem!important
+
+#content {
+  border: none;
+  background: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 0;
 }
-#account {
-  max-width: 500px;
-  margin-right: 3rem;
+
+#content > .container:not(.header), #content > .helpdesk-parent, #content > .container-fluid {
+  border: 1px solid #CCC;
+  background: #ffffff;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.btn-group > .btn-mini,
+ .btn-group > .btn, .btn-group > .dropdown-menu, .btn-group > .popover {
+    font-size: @default-font-size
+}
+
+.btn-mini {
+    padding: 4px 12px
+}
+
+.ml-2 {
+    margin-left: 1rem;
 }

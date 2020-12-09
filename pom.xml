@@ -22,7 +22,7 @@
     <parent>
         <groupId>it.cnr.si.cool.jconon</groupId>
         <artifactId>cool-jconon-parent</artifactId>
-        <version>4.4.6</version>
+        <version>4.5.15</version>
     </parent>
 
     <artifactId>cool-jconon-agid</artifactId>
