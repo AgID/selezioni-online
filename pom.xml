@@ -33,6 +33,8 @@
         <cool.mode>development</cool.mode>
         <start-class>it.cnr.si.cool.jconon.CoolJcononApplication</start-class>
         <hazelcast.version>3.7.2</hazelcast.version>
+        <feign.version>10.11</feign.version>
+        <feign-form.version>3.8.0</feign-form.version>
     </properties>
 
     <packaging>war</packaging>
@@ -42,6 +44,27 @@
             <groupId>it.cnr.si.cool.jconon</groupId>
             <artifactId>cool-jconon-webapp-resources</artifactId>
             <version>${project.parent.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>it.cnr.si.cool.jconon</groupId>
+                    <artifactId>cool-jconon-spid</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>${feign.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-gson</artifactId>
+            <version>${feign.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+            <version>${feign-form.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>

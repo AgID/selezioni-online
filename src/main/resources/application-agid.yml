@@ -32,8 +32,12 @@ attiva:
   protocol:
     application: false
 
-spid:
-  enable: true
-  issuer:
-    entityid: https://miauri.it
-  destination: http://localhost:8080/spid/send-response
+
+agid-login:
+  url: https://login.agid.gov.it
+  auth: ${agid-login.url}/auth
+  redirect_uri: http://localhost:8080/openapi/agid-login/response
+  client_id:
+  client_secret:
+  response_type: code
+  scope: openid profile
