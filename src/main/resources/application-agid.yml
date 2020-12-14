@@ -36,8 +36,8 @@ attiva:
 agid-login:
   url: https://login.agid.gov.it
   auth: ${agid-login.url}/auth
-  redirect_uri: http://localhost:8080/openapi/agid-login/response
-  client_id:
-  client_secret:
+  redirect_uri: must_be_set
+  client_id: secret
+  client_secret: secret
   response_type: code
   scope: openid profile
