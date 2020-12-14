@@ -32,6 +32,9 @@ attiva:
   protocol:
     application: false
 
+feign:
+  httpclient:
+    disableSslValidation: true
 
 agid-login:
   url: https://login.agid.gov.it
