@@ -16,7 +16,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 
 @Configuration
@@ -37,7 +39,12 @@ public class AGIDLoginConfiguration {
         return Feign.builder()
                 .requestInterceptor(new BasicAuthRequestInterceptor(properties.getClient_id(), properties.getClient_secret()))
                 .retryer(Retryer.NEVER_RETRY)
-                .client(new Client.Default(getSSLSocketFactory(), null))
+                .client(new Client.Default(getSSLSocketFactory(), new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String s, SSLSession sslSession) {
+                        return true;
+                    }
+                }))
                 .decoder(new GsonDecoder())
                 .encoder(new FormEncoder(new GsonEncoder()))
                 .target(AGIDLogin.class, properties.getUrl());
