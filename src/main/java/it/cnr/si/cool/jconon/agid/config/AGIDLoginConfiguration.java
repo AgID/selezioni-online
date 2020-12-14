@@ -2,6 +2,7 @@ package it.cnr.si.cool.jconon.agid.config;
 
 import feign.Client;
 import feign.Feign;
+import feign.Retryer;
 import feign.auth.BasicAuthRequestInterceptor;
 import feign.form.FormEncoder;
 import feign.gson.GsonDecoder;
@@ -35,14 +36,11 @@ public class AGIDLoginConfiguration {
     public AGIDLogin initAGIDLogin() {
         return Feign.builder()
                 .requestInterceptor(new BasicAuthRequestInterceptor(properties.getClient_id(), properties.getClient_secret()))
+                .retryer(Retryer.NEVER_RETRY)
+                .client(new Client.Default(getSSLSocketFactory(), null))
                 .decoder(new GsonDecoder())
                 .encoder(new FormEncoder(new GsonEncoder()))
                 .target(AGIDLogin.class, properties.getUrl());
-    }
-
-    @Bean
-    public Client feignClient() {
-        return new Client.Default(getSSLSocketFactory(), new NoopHostnameVerifier());
     }
 
     private SSLSocketFactory getSSLSocketFactory() {
