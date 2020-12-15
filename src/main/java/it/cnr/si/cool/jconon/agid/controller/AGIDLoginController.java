@@ -33,7 +33,6 @@ public class AGIDLoginController {
 
     @GetMapping("/auth")
     public ModelAndView redirect(ModelMap model) {
-        LOGGER.debug("Redirect to AGIDLogin");
         model.addAttribute("client_id", properties.getClient_id());
         model.addAttribute("redirect_uri", properties.getRedirect_uri());
         model.addAttribute("response_type", properties.getResponse_type());
