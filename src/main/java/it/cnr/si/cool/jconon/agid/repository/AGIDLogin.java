@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 @Headers({"Content-Type: application/x-www-form-urlencoded"})
 public interface AGIDLogin {
-    String AUTH_TOKEN = "Authorization";
 
     @RequestLine("POST /token")
     AccessToken getTokenFull(
@@ -18,7 +17,8 @@ public interface AGIDLogin {
             @Param("client_secret") String client_secret
     );
 
+    @Headers("Authorization: {token}")
     @RequestLine("POST /userinfo")
-    UserInfo getUserInfo(@RequestHeader(AUTH_TOKEN) String bearerToken);
+    UserInfo getUserInfo(@Param("token") String token);
 
 }
