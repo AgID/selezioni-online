@@ -51,7 +51,7 @@ public class AGIDLoginController {
                 properties.getClient_id(),
                 properties.getClient_secret());
         LOGGER.info("AccessToken: {}", accessToken);
-        UserInfo userInfo = agidLogin.getUserInfo(accessToken.getAccess_token());
+        UserInfo userInfo = agidLogin.getUserInfo("Bearer ".concat(accessToken.getAccess_token()));
         LOGGER.info("UserInfo: {}", userInfo);
         return new ModelAndView("redirect:/");
     }
