@@ -19,6 +19,10 @@ public interface AGIDLogin {
 
     @Headers("Authorization: {token}")
     @RequestLine("POST /userinfo")
-    UserInfo getUserInfo(@Param("token") String token);
+    UserInfo getUserInfo(
+            @Param("token") String token,
+            @Param("client_id") String client_id,
+            @Param("client_secret") String client_secret
+    );
 
 }
