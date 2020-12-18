@@ -12,6 +12,9 @@ import lombok.Setter;
 public class UserInfo {
     private String sub;
     private String email;
-    private String name;
-    private String lastName;
+    private String firstname;
+    private String lastname;
+    private String fiscalNumber;
+    private String phone;
+
 }
