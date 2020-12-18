@@ -4,8 +4,10 @@ import it.cnr.si.cool.jconon.agid.config.AGIDLoginConfigurationProperties;
 import it.cnr.si.cool.jconon.agid.repository.AGIDLogin;
 import it.cnr.si.cool.jconon.agid.repository.AccessToken;
 import it.cnr.si.cool.jconon.agid.repository.UserInfo;
+import it.cnr.si.cool.jconon.agid.service.AGIDLoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.naming.AuthenticationException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.UUID;
@@ -23,12 +29,16 @@ import java.util.UUID;
 @EnableConfigurationProperties(AGIDLoginConfigurationProperties.class)
 public class AGIDLoginController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AGIDLoginController.class);
+    @Value("${cookie.secure}")
+    private Boolean cookieSecure;
     private final AGIDLoginConfigurationProperties properties;
     private final AGIDLogin agidLogin;
+    private final AGIDLoginService agidLoginService;
 
-    public AGIDLoginController(AGIDLoginConfigurationProperties properties, AGIDLogin agidLogin) {
+    public AGIDLoginController(AGIDLoginConfigurationProperties properties, AGIDLogin agidLogin, AGIDLoginService agidLoginService) {
         this.properties = properties;
         this.agidLogin = agidLogin;
+        this.agidLoginService = agidLoginService;
     }
 
     @GetMapping("/auth")
@@ -42,7 +52,12 @@ public class AGIDLoginController {
     }
 
     @GetMapping("/response")
-    public ModelAndView response(@RequestParam("code") String code, @RequestParam("state") String state) throws IOException, URISyntaxException {
+    public ModelAndView response(ModelMap model,
+                                 HttpServletResponse res,
+                                 HttpServletRequest req,
+                                 @RequestParam("code") String code,
+                                 @RequestParam("state") String state
+    ) throws IOException, URISyntaxException {
         LOGGER.info("Code: {}", code);
         AccessToken accessToken = agidLogin.getTokenFull(
                 "authorization_code",
@@ -56,7 +71,25 @@ public class AGIDLoginController {
                 properties.getClient_id(),
                 properties.getClient_secret());
         LOGGER.info("UserInfo: {}", userInfo);
-        return new ModelAndView("redirect:/");
+        try {
+            final String ticket = agidLoginService.createTicket(userInfo);
+            res.addCookie(getCookie(ticket, req.isSecure()));
+            return new ModelAndView("redirect:/");
+        } catch (Exception e) {
+            LOGGER.warn("Cannot create ticket from AGIG Login ", e);
+            model.addAttribute("failureMessage", e.getMessage());
+            return new ModelAndView("redirect:/login", model);
+        }
+    }
+
+    private Cookie getCookie(String ticket, boolean secure) {
+        int maxAge = ticket == null ? 0 : 3600;
+        Cookie cookie = new Cookie("ticket", ticket);
+        cookie.setPath("/");
+        cookie.setMaxAge(maxAge);
+        cookie.setSecure(secure && cookieSecure);
+        cookie.setHttpOnly(true);
+        return cookie;
     }
 
 }
