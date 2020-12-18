@@ -44,7 +44,12 @@ public class AGIDLoginController {
     @GetMapping("/response")
     public ModelAndView response(@RequestParam("code") String code, @RequestParam("state") String state) throws IOException, URISyntaxException {
         LOGGER.info("Code: {}", code);
-        AccessToken accessToken = agidLogin.getTokenFull("authorization_code", code, properties.getRedirect_uri());
+        AccessToken accessToken = agidLogin.getTokenFull(
+                "authorization_code",
+                code,
+                properties.getRedirect_uri(),
+                properties.getClient_id(),
+                properties.getClient_secret());
         LOGGER.info("AccessToken: {}", accessToken);
         UserInfo userInfo = agidLogin.getUserInfo(accessToken.getAccess_token());
         LOGGER.info("UserInfo: {}", userInfo);

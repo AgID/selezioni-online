@@ -27,7 +27,6 @@ public class AGIDLoginConfiguration {
     @Bean
     public AGIDLogin initAGIDLogin() {
         return Feign.builder()
-                .requestInterceptor(new ClientRequestInterceptor(properties.getClient_id(), properties.getClient_secret()))
                 .decoder(new GsonDecoder())
                 .encoder(new FormEncoder(new GsonEncoder()))
                 .target(AGIDLogin.class, properties.getUrl());

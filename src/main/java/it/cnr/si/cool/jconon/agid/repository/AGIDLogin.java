@@ -13,7 +13,9 @@ public interface AGIDLogin {
     AccessToken getTokenFull(
             @Param("grant_type") String grantType,
             @Param("code") String code,
-            @Param("redirect_uri") String redirectUri
+            @Param("redirect_uri") String redirectUri,
+            @Param("client_id") String client_id,
+            @Param("client_secret") String client_secret
     );
 
     @RequestLine("POST /userinfo")
