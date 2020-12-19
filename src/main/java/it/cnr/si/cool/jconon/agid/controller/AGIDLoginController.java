@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/openapi/agid-login")
@@ -61,10 +62,12 @@ public class AGIDLoginController {
     public ModelAndView response(ModelMap model,
                                  HttpServletResponse res,
                                  HttpServletRequest req,
-                                 @RequestParam("code") String code,
-                                 @RequestParam("state") String state
-    ) throws IOException, URISyntaxException {
-        if (agidLoginRepository.isStateValid(state)) {
+                                 @RequestParam(value = "code", required = false) String code,
+                                 @RequestParam("state") String state,
+                                 @RequestParam(value = "error", required = false) String error,
+                                 @RequestParam(value = "error_description", required = false) String error_description
+                                 ) throws IOException, URISyntaxException {
+        if (agidLoginRepository.isStateValid(state) || !Optional.ofNullable(error).isPresent()) {
             LOGGER.info("Code: {}", code);
             AccessToken accessToken = agidLogin.getTokenFull(
                     "authorization_code",
@@ -88,7 +91,10 @@ public class AGIDLoginController {
                 return new ModelAndView("redirect:/login", model);
             }
         } else {
-            model.addAttribute("failureMessage", "agid-state-notfound");
+            model.addAttribute(
+                    "failureMessage",
+                    Optional.ofNullable(error_description).orElse("agid-state-notfound")
+            );
             return new ModelAndView("redirect:/login", model);
         }
     }
