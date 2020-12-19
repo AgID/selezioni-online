@@ -31,6 +31,10 @@
 		<from>/search/content</from>
 		<to>/rest/content</to>
 	</rule>
+	<rule>
+		<from>/manuali</from>
+		<to type="permanent-redirect" last="true">https://consiglionazionaledellericerche.github.io/cool-jconon</to>
+	</rule>
 
 	<rule match-type="regex">
 		<condition type="request-uri" operator="notequal">^/info$</condition>

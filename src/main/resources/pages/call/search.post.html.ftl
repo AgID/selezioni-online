@@ -1,5 +1,7 @@
 <div class="header container jumbotron">
-    <h1 class="text-center">${message('label.h3.call')}</h1>
+    <h1>${message('label.home.title.h2')}</h1>
+    <h2>${message('label.home.title.h3')}</h2>
+    <h3 class="text-center">${message('label.h3.call')}</h3>
 </div>
 <div class="container">
   <div class="container-fluid">
