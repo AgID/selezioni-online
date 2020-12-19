@@ -51,11 +51,6 @@ public class AGIDLoginRepository {
                 .anyMatch(s -> s.equalsIgnoreCase(state));
     }
 
-    @CacheEvict(value = AGID_STATE, key = "#state")
-    public void removeState(String state) {
-        LOGGER.info("cleared AGID Login with state {}", state);
-    }
-
     @CacheEvict(value = AGID_STATE, allEntries = true)
     public void removeAllState() {
         LOGGER.info("cleared all AGID Login state");

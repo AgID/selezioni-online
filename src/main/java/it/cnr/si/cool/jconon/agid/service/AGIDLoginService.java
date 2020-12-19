@@ -5,12 +5,14 @@ import it.cnr.cool.cmis.service.CMISService;
 import it.cnr.cool.exception.CoolUserFactoryException;
 import it.cnr.cool.security.service.UserService;
 import it.cnr.cool.security.service.impl.alfresco.CMISUser;
+import it.cnr.si.cool.jconon.agid.repository.AGIDLoginRepository;
 import it.cnr.si.cool.jconon.agid.repository.UserInfo;
 import org.apache.chemistry.opencmis.client.bindings.impl.CmisBindingsHelper;
 import org.apache.chemistry.opencmis.commons.impl.UrlBuilder;
 import org.apache.commons.httpclient.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,10 +26,12 @@ public class AGIDLoginService {
 
     private final CMISService cmisService;
     private final UserService userService;
+    private final AGIDLoginRepository agidLoginRepository;
 
-    public AGIDLoginService(CMISService cmisService, UserService userService) {
+    public AGIDLoginService(CMISService cmisService, UserService userService, AGIDLoginRepository agidLoginRepository) {
         this.cmisService = cmisService;
         this.userService = userService;
+        this.agidLoginRepository = agidLoginRepository;
     }
 
     public String createTicket(UserInfo userInfo) {
@@ -96,6 +100,12 @@ public class AGIDLoginService {
             LOGGER.error("Cannot create ticket for user {}", cmisUser.getId(), _ex);
         }
         return null;
+    }
+
+    @Scheduled(cron = "0 0 4 * * *")
+    public void evictAuthnRequest() {
+        agidLoginRepository.removeAllState();
+        LOGGER.info("AGID Login remove all State");
     }
 
 }
