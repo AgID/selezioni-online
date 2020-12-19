@@ -67,7 +67,7 @@ public class AGIDLoginController {
                                  @RequestParam(value = "error", required = false) String error,
                                  @RequestParam(value = "error_description", required = false) String error_description
                                  ) throws IOException, URISyntaxException {
-        if (!Optional.ofNullable(error).isPresent() || agidLoginRepository.isStateValid(state)) {
+        if (!Optional.ofNullable(error).isPresent() && agidLoginRepository.isStateValid(state)) {
             LOGGER.info("Code: {}", code);
             AccessToken accessToken = agidLogin.getTokenFull(
                     "authorization_code",
