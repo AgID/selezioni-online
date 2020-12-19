@@ -63,11 +63,11 @@ public class AGIDLoginController {
                                  HttpServletResponse res,
                                  HttpServletRequest req,
                                  @RequestParam(value = "code", required = false) String code,
-                                 @RequestParam("state") String state,
+                                 @RequestParam(value = "state", required = false) String state,
                                  @RequestParam(value = "error", required = false) String error,
                                  @RequestParam(value = "error_description", required = false) String error_description
                                  ) throws IOException, URISyntaxException {
-        if (agidLoginRepository.isStateValid(state) || !Optional.ofNullable(error).isPresent()) {
+        if (!Optional.ofNullable(error).isPresent() || agidLoginRepository.isStateValid(state)) {
             LOGGER.info("Code: {}", code);
             AccessToken accessToken = agidLogin.getTokenFull(
                     "authorization_code",
@@ -93,7 +93,7 @@ public class AGIDLoginController {
         } else {
             model.addAttribute(
                     "failureMessage",
-                    Optional.ofNullable(error_description).orElse("agid-state-notfound")
+                    Optional.ofNullable(error).map(s -> "agid-login-".concat(s)).orElse("agid-state-notfound")
             );
             return new ModelAndView("redirect:/login", model);
         }
