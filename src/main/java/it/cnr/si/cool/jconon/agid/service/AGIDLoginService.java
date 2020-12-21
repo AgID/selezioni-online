@@ -37,7 +37,7 @@ public class AGIDLoginService {
     public String createTicket(UserInfo userInfo) {
         CMISUser cmisUser = new CMISUser();
         cmisUser.setFirstName(userInfo.getFirstname());
-        cmisUser.setLastName(userInfo.getFirstname());
+        cmisUser.setLastName(userInfo.getLastname());
         cmisUser.setCodicefiscale(userInfo.getFiscalNumber());
         cmisUser.setEmail(userInfo.getEmail());
         final Optional<CMISUser> userByCodiceFiscale =
