@@ -1,12 +1,12 @@
 package it.cnr.si.cool.jconon.agid.controller;
 
-import feign.auth.Base64;
 import it.cnr.si.cool.jconon.agid.config.AGIDLoginConfigurationProperties;
 import it.cnr.si.cool.jconon.agid.repository.AGIDLogin;
 import it.cnr.si.cool.jconon.agid.repository.AGIDLoginRepository;
 import it.cnr.si.cool.jconon.agid.repository.AccessToken;
 import it.cnr.si.cool.jconon.agid.repository.UserInfo;
 import it.cnr.si.cool.jconon.agid.service.AGIDLoginService;
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -71,7 +71,7 @@ public class AGIDLoginController {
         if (!Optional.ofNullable(error).isPresent() && agidLoginRepository.isStateValid(state)) {
             LOGGER.info("Code: {}", code);
             AccessToken accessToken = agidLogin.getTokenFull(
-                    "Basic " + org.apache.commons.codec.binary.Base64.encodeBase64String(
+                    "Basic " + Base64.encodeBase64String(
                             (properties.getClient_id() + ":" + properties.getClient_secret()).getBytes("UTF-8")),
                     "authorization_code",
                     code,
