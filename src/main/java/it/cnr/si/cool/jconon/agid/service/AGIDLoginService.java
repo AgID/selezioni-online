@@ -47,7 +47,7 @@ public class AGIDLoginService {
         } else {
             String userName = normalize(cmisUser.getFirstName())
                     .toLowerCase()
-                    .concat("-")
+                    .concat(".")
                     .concat(normalize(cmisUser.getLastName())
                             .toLowerCase());
             //Verifico se l'utenza ha lo stesso codice fiscale

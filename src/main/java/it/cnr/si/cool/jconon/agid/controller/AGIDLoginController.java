@@ -1,5 +1,6 @@
 package it.cnr.si.cool.jconon.agid.controller;
 
+import feign.auth.Base64;
 import it.cnr.si.cool.jconon.agid.config.AGIDLoginConfigurationProperties;
 import it.cnr.si.cool.jconon.agid.repository.AGIDLogin;
 import it.cnr.si.cool.jconon.agid.repository.AGIDLoginRepository;
@@ -70,6 +71,8 @@ public class AGIDLoginController {
         if (!Optional.ofNullable(error).isPresent() && agidLoginRepository.isStateValid(state)) {
             LOGGER.info("Code: {}", code);
             AccessToken accessToken = agidLogin.getTokenFull(
+                    "Basic " + org.apache.commons.codec.binary.Base64.encodeBase64String(
+                            (properties.getClient_id() + ":" + properties.getClient_secret()).getBytes("UTF-8")),
                     "authorization_code",
                     code,
                     properties.getRedirect_uri(),

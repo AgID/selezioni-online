@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface AGIDLogin {
 
     @RequestLine("POST /token")
+    @Headers("Authorization: {basicAuth}")
     AccessToken getTokenFull(
+            @Param("basicAuth") String basicAuth,
             @Param("grant_type") String grantType,
             @Param("code") String code,
             @Param("redirect_uri") String redirectUri,
