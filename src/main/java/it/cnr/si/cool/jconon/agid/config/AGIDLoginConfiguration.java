@@ -1,7 +1,6 @@
 package it.cnr.si.cool.jconon.agid.config;
 
 import feign.Feign;
-import feign.auth.BasicAuthRequestInterceptor;
 import feign.form.FormEncoder;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
