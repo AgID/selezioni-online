@@ -33,6 +33,7 @@ attiva:
     application: false
 
 agid-login:
+  name: AGID@login
   url: https://login.agid.gov.it
   auth: ${agid-login.url}/auth
   redirect_uri: must_be_set

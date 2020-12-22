@@ -255,9 +255,9 @@
     </build>
 
     <scm>
-        <connection>scm:git:git@github.com:consiglionazionaledellericerche/cool-jconon-agid.git</connection>
-        <developerConnection>scm:git:git@github.com:consiglionazionaledellericerche/cool-jconon-agid.git</developerConnection>
-        <url>https://github.com/consiglionazionaledellericerche/cool-jconon-agid</url>
+        <connection>scm:git:ssh://git@git.si.cnr.it/documentale/cool-jconon-agid.git</connection>
+        <developerConnection>scm:git:ssh://git@git.si.cnr.it/documentale/cool-jconon-agid.git</developerConnection>
+        <url>http://git.si.cnr.it/documentale/cool-jconon-agid</url>
         <tag>HEAD</tag>
     </scm>
 

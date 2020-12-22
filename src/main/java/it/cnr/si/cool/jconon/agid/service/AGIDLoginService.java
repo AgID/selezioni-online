@@ -5,6 +5,7 @@ import it.cnr.cool.cmis.service.CMISService;
 import it.cnr.cool.exception.CoolUserFactoryException;
 import it.cnr.cool.security.service.UserService;
 import it.cnr.cool.security.service.impl.alfresco.CMISUser;
+import it.cnr.si.cool.jconon.agid.config.AGIDLoginConfigurationProperties;
 import it.cnr.si.cool.jconon.agid.repository.AGIDLoginRepository;
 import it.cnr.si.cool.jconon.agid.repository.UserInfo;
 import org.apache.chemistry.opencmis.client.bindings.impl.CmisBindingsHelper;
@@ -27,15 +28,18 @@ public class AGIDLoginService {
     private final CMISService cmisService;
     private final UserService userService;
     private final AGIDLoginRepository agidLoginRepository;
+    private final AGIDLoginConfigurationProperties properties;
 
-    public AGIDLoginService(CMISService cmisService, UserService userService, AGIDLoginRepository agidLoginRepository) {
+    public AGIDLoginService(CMISService cmisService, UserService userService, AGIDLoginRepository agidLoginRepository, AGIDLoginConfigurationProperties properties) {
         this.cmisService = cmisService;
         this.userService = userService;
         this.agidLoginRepository = agidLoginRepository;
+        this.properties = properties;
     }
 
     public String createTicket(UserInfo userInfo) {
         CMISUser cmisUser = new CMISUser();
+        cmisUser.setApplication("AGID@login");
         cmisUser.setFirstName(userInfo.getFirstname());
         cmisUser.setLastName(userInfo.getLastname());
         cmisUser.setCodicefiscale(userInfo.getFiscalNumber());
