@@ -7,6 +7,9 @@ user:
 server:
   servlet:
     context-path: /
+ajp:
+  port: 8009
+  timeout: 120000
 rrd:
   path: remote-shared,remote,remote-agid
   skipmd5: true
