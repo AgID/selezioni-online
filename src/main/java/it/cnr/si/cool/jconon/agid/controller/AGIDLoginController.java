@@ -67,24 +67,26 @@ public class AGIDLoginController {
 
     @GetMapping("/logout")
     public ModelAndView logout(HttpServletRequest req, HttpServletResponse res, ModelMap model) {
-        final String agidLoginToken = Arrays.asList(req.getCookies())
+        final Optional<String> agidLoginToken = Arrays.asList(req.getCookies())
                 .stream()
                 .filter(cookie -> cookie.getName().equalsIgnoreCase(AGID_LOGIN_TOKEN))
                 .map(cookie -> cookie.getValue())
-                .findAny()
-                .orElse("");
+                .findAny();
         securityRest.logout(req, res);
-        model.addAttribute("client_id", properties.getClient_id());
-        model.addAttribute("redirect_uri", properties.getRedirect_uri());
-        model.addAttribute("response_type", properties.getResponse_type());
-        model.addAttribute("scope", properties.getScope());
-        model.addAttribute("state", agidLoginRepository.register());
-        return new ModelAndView("redirect:".concat(
-                properties.getLogout()
-                        .concat("/")
-                        .concat(agidLoginToken)
-                        .concat("/end")
-        ), model);
+        if (agidLoginToken.isPresent()) {
+            model.addAttribute("client_id", properties.getClient_id());
+            model.addAttribute("redirect_uri", properties.getRedirect_uri());
+            model.addAttribute("response_type", properties.getResponse_type());
+            model.addAttribute("scope", properties.getScope());
+            model.addAttribute("state", agidLoginRepository.register());
+            return new ModelAndView("redirect:".concat(
+                    properties.getLogout()
+                            .concat("/")
+                            .concat(agidLoginToken.get())
+                            .concat("/end")
+            ), model);
+        }
+        return new ModelAndView("redirect:".concat("/"));
     }
 
     @GetMapping("/response")
