@@ -74,17 +74,10 @@ public class AGIDLoginController {
                 .findAny();
         securityRest.logout(req, res);
         if (agidLoginToken.isPresent()) {
-            model.addAttribute("client_id", properties.getClient_id());
-            model.addAttribute("redirect_uri", properties.getRedirect_uri());
-            model.addAttribute("response_type", properties.getResponse_type());
-            model.addAttribute("scope", properties.getScope());
-            model.addAttribute("state", agidLoginRepository.register());
-            return new ModelAndView("redirect:".concat(
-                    properties.getLogout()
-                            .concat("/")
-                            .concat(agidLoginToken.get())
-                            .concat("/end")
-            ), model);
+            agidLogin.logout(
+                    agidLoginToken.get(),
+                    properties.getClient_id(),
+                    properties.getClient_secret());
         }
         return new ModelAndView("redirect:".concat("/"));
     }
