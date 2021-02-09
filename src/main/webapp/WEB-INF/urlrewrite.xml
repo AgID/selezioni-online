@@ -31,9 +31,20 @@
 		<from>/search/content</from>
 		<to>/rest/content</to>
 	</rule>
+
+	<rule>
+		<from>/internal-login</from>
+		<to>/rest/page/login</to>
+	</rule>
+
 	<rule>
 		<from>/login</from>
 		<to>/openapi/agid-login/auth</to>
+	</rule>
+
+	<rule>
+		<from>/rest/security/logout</from>
+		<to>/openapi/agid-login/logout</to>
 	</rule>
 
 	<rule>

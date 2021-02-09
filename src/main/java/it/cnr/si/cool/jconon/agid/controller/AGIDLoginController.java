@@ -58,6 +58,16 @@ public class AGIDLoginController {
         return new ModelAndView("redirect:".concat(properties.getAuth()), model);
     }
 
+    @GetMapping("/logout")
+    public ModelAndView logout(ModelMap model) {
+        model.addAttribute("client_id", properties.getClient_id());
+        model.addAttribute("redirect_uri", properties.getRedirect_uri());
+        model.addAttribute("response_type", properties.getResponse_type());
+        model.addAttribute("scope", properties.getScope());
+        model.addAttribute("state", agidLoginRepository.register());
+        return new ModelAndView("redirect:".concat(properties.getLogout()), model);
+    }
+
     @GetMapping("/response")
     public ModelAndView response(ModelMap model,
                                  HttpServletResponse res,

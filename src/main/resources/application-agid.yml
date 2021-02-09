@@ -25,14 +25,19 @@ mail:
 
 hazelcast:
   members: 127.0.0.1
-  port: 1234
+  port:
     autoincrement: false
-  autoincrement: false
+
   multicast:
     port: 12345
   instance:
     name: agid
 
+cookie:
+  secure: true
+
+security:
+  enable-csrf: true
 
 attiva:
   protocol:
@@ -42,6 +47,7 @@ agid-login:
   name: AGID@login
   url: https://login.agid.gov.it
   auth: ${agid-login.url}/auth
+  logout: ${agid-login.url}/session/end
   redirect_uri: must_be_set
   client_id: secret
   client_secret: secret

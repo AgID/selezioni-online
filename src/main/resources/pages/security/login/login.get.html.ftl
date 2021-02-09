@@ -1,11 +1,7 @@
 <div class="container">
   <div class="container-fluid">
     <div class="row-fluid row-content">
-      <div class="span7">
-        <p>${message('label.selezione.concorsi')}</p>
-        <p><strong>${message('label.selezione.altri')}</strong></p>
-      </div>
-      <div class="span5">
+      <div class="span12">
         <form class="form-signin" action="${url.context}/rest/security/login" method="post">
           <#if _csrf??>
               <input type="hidden"
@@ -26,11 +22,8 @@
             </div>
             <div class="inline-block btn-block">
                 <button class="btn btn-primary span6" type="submit"><i class="icon-user icon-2x animated flash"></i> ${message('sign.in')}</button>
-                <a class="btn btn-primary span6" href="${url.context}/openapi/agid-login/auth">
-                    <img class="logo-header" src="res/img/agid-login.png" alt="AgID Login">
-                </a>
+                <button id="passwordRecovery" class="btn btn-block span6" type="button"><i class="icon-2x icon-envelope animated flash icon-blue"></i> <span class="text-info">${message('password.recovery')}</span></button>
             </div>
-            <button id="passwordRecovery" class="btn btn-block" type="button"><i class="icon-envelope animated flash icon-blue"></i> <span class="text-info">${message('password.recovery')}</span></button>
             <input type="hidden" name="redirect" value="${url.context}/<#if args.redirect??>${args.redirect}<#else>home</#if>"/>
             <#if queryString??>
               <input type="hidden" name="queryString" value="${queryString}"/>
