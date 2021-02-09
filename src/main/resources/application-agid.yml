@@ -26,11 +26,13 @@ mail:
 hazelcast:
   members: 127.0.0.1
   port: 1234
+    autoincrement: false
   autoincrement: false
   multicast:
     port: 12345
   instance:
     name: agid
+
 
 attiva:
   protocol:
