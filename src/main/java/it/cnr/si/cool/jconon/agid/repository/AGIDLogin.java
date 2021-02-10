@@ -27,9 +27,7 @@ public interface AGIDLogin {
     @Headers("Authorization: {token}")
     @RequestLine("GET /session/end")
     void logout(
-            @Param("id_token") String id_token,
-            @Param("client_id") String client_id,
-            @Param("client_secret") String client_secret
+            @Param("id_token_hint") String id_token
     );
 
 }

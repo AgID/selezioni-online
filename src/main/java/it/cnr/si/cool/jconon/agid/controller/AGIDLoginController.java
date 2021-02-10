@@ -75,9 +75,7 @@ public class AGIDLoginController {
         securityRest.logout(req, res);
         if (agidLoginToken.isPresent()) {
             agidLogin.logout(
-                    agidLoginToken.get(),
-                    properties.getClient_id(),
-                    properties.getClient_secret());
+                    agidLoginToken.get());
         }
         return new ModelAndView("redirect:".concat("/"));
     }
