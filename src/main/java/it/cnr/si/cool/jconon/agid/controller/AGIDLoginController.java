@@ -72,10 +72,13 @@ public class AGIDLoginController {
                 .filter(cookie -> cookie.getName().equalsIgnoreCase(AGID_LOGIN_TOKEN))
                 .map(cookie -> cookie.getValue())
                 .findAny();
-        securityRest.logout(req, res);
         if (agidLoginToken.isPresent()) {
-            agidLogin.logout(
-                    agidLoginToken.get());
+            model.addAttribute("post_logout_redirect_uri", properties.getPost_logout_redirect_uri());
+            model.addAttribute("state", agidLoginRepository.register());
+            model.addAttribute("id_token_hint", agidLoginToken.get());
+            return new ModelAndView("redirect:".concat(properties.getLogout()), model);
+        } else {
+            securityRest.logout(req, res);
         }
         return new ModelAndView("redirect:".concat("/"));
     }

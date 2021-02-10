@@ -11,7 +11,9 @@ public class AGIDLoginConfigurationProperties {
     private String name;
     private String url;
     private String auth;
+    private String logout;
     private String redirect_uri;
+    private String post_logout_redirect_uri;
     private String client_id;
     private String client_secret;
     private String response_type;

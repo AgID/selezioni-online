@@ -47,7 +47,9 @@ agid-login:
   name: AGID@login
   url: https://login.agid.gov.it
   auth: ${agid-login.url}/auth
+  logout: ${agid-login.url}/session/end
   redirect_uri: must_be_set
+  post_logout_redirect_uri: must_be_set
   client_id: secret
   client_secret: secret
   response_type: code
