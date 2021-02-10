@@ -24,6 +24,7 @@ import java.util.Optional;
 @Service
 public class AGIDLoginService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AGIDLoginService.class);
+    public static final String AGID_LOGIN = "AGID@login";
 
     private final CMISService cmisService;
     private final UserService userService;
@@ -39,7 +40,7 @@ public class AGIDLoginService {
 
     public String createTicket(UserInfo userInfo) {
         CMISUser cmisUser = new CMISUser();
-        cmisUser.setApplication("AGID@login");
+        cmisUser.setApplication(AGID_LOGIN);
         cmisUser.setFirstName(userInfo.getFirstname());
         cmisUser.setLastName(userInfo.getLastname());
         cmisUser.setCodicefiscale(userInfo.getFiscalNumber());

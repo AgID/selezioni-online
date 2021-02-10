@@ -1,13 +1,11 @@
 package it.cnr.si.cool.jconon.agid.repository;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class AccessToken {
     private String access_token;
     private Integer expires_in;

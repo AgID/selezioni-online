@@ -107,6 +107,12 @@ public class AGIDLoginController {
                     properties.getClient_secret());
             LOGGER.info("UserInfo: {}", userInfo);
             try {
+                if (!Optional.ofNullable(userInfo.getFirstname()).isPresent() ||
+                        !Optional.ofNullable(userInfo.getLastname()).isPresent() ||
+                        !Optional.ofNullable(userInfo.getFiscalNumber()).isPresent()) {
+                    model.addAttribute("failureMessage", "agid-userinfo-notcomplete");
+                    return new ModelAndView("redirect:/", model);
+                }
                 final String ticket = agidLoginService.createTicket(userInfo);
                 res.addCookie(getCookie(ticket, req.isSecure()));
                 res.addCookie(getCookieAgiDLogin(accessToken.getId_token(), req.isSecure()));
