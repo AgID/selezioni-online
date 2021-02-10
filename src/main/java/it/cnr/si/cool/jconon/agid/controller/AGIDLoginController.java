@@ -114,14 +114,14 @@ public class AGIDLoginController {
             } catch (Exception e) {
                 LOGGER.warn("Cannot create ticket from AGIG Login ", e);
                 model.addAttribute("failureMessage", e.getMessage());
-                return new ModelAndView("redirect:/login", model);
+                return new ModelAndView("redirect:/", model);
             }
         } else {
             model.addAttribute(
                     "failureMessage",
                     Optional.ofNullable(error).map(s -> "agid-login-".concat(s)).orElse("agid-state-notfound")
             );
-            return new ModelAndView("redirect:/login", model);
+            return new ModelAndView("redirect:/", model);
         }
     }
 
