@@ -67,6 +67,13 @@ public class AGIDLoginController {
 
     @GetMapping("/logout")
     public ModelAndView logout(HttpServletRequest req, HttpServletResponse res, ModelMap model) {
+        securityRest.logout(req, res);
+        res.addCookie(getCookieAgiDLogin(null, req.isSecure()));
+        return new ModelAndView("redirect:".concat("/"));
+    }
+
+    @GetMapping("/internal-logout")
+    public ModelAndView internalLogout(HttpServletRequest req, HttpServletResponse res, ModelMap model) {
         final Optional<String> agidLoginToken = Arrays.asList(
                     Optional.ofNullable(req.getCookies()).orElse(new Cookie[0])
                 )
@@ -75,7 +82,6 @@ public class AGIDLoginController {
                 .map(cookie -> cookie.getValue())
                 .findAny();
         if (agidLoginToken.isPresent()) {
-            res.addCookie(getCookieAgiDLogin(null, req.isSecure()));
             model.addAttribute("post_logout_redirect_uri", properties.getPost_logout_redirect_uri());
             model.addAttribute("state", agidLoginRepository.register());
             model.addAttribute("id_token_hint", agidLoginToken.get());
