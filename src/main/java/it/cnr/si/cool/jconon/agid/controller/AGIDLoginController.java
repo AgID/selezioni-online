@@ -75,6 +75,7 @@ public class AGIDLoginController {
                 .map(cookie -> cookie.getValue())
                 .findAny();
         if (agidLoginToken.isPresent()) {
+            res.addCookie(getCookieAgiDLogin(null, req.isSecure()));
             model.addAttribute("post_logout_redirect_uri", properties.getPost_logout_redirect_uri());
             model.addAttribute("state", agidLoginRepository.register());
             model.addAttribute("id_token_hint", agidLoginToken.get());
