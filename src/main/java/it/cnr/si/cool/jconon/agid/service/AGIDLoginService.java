@@ -58,7 +58,8 @@ public class AGIDLoginService {
             //Verifico se l'utenza ha lo stesso codice fiscale
             try {
                 Optional<CMISUser> cmisUser2 = Optional.ofNullable(userService.loadUserForConfirm(userName))
-                        .filter(cmisUser1 -> cmisUser1.getCodicefiscale().equalsIgnoreCase(cmisUser.getCodicefiscale()));
+                        .filter(cmisUser1 -> Optional.ofNullable(cmisUser1.getCodicefiscale()).orElse("")
+                                .equalsIgnoreCase(cmisUser.getCodicefiscale()));
                 if (cmisUser2.isPresent()) {
                     return createTicketForUser(cmisUser2.get());
                 }

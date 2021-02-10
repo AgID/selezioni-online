@@ -67,7 +67,9 @@ public class AGIDLoginController {
 
     @GetMapping("/logout")
     public ModelAndView logout(HttpServletRequest req, HttpServletResponse res, ModelMap model) {
-        final Optional<String> agidLoginToken = Arrays.asList(req.getCookies())
+        final Optional<String> agidLoginToken = Arrays.asList(
+                    Optional.ofNullable(req.getCookies()).orElse(new Cookie[0])
+                )
                 .stream()
                 .filter(cookie -> cookie.getName().equalsIgnoreCase(AGID_LOGIN_TOKEN))
                 .map(cookie -> cookie.getValue())
