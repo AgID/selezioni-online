@@ -6,12 +6,11 @@ stages:
   - deploy
   - build
   - catapult
-  - publiccode
   - release
 
 variables:
   MAVEN_OPTS: "-Djava.awt.headless=true -Dsonar.host.url=$SONAR_HOST_URL"
-  MAVEN_CLI_OPTS: "-s .m2/settings.xml -Dmaven.repo.local=./.m2/repository -Dnexus.url=$NEXUS_URL -Dnexus.login=$NEXUS_USERNAME -Dnexus.pwd=$NEXUS_PASSWORD -Drepository.base.url=$CMIS_BASE_URL -Dsiper.url=$SIPER_URL -Dsiper.username=$SIPER_USERNAME -Dsiper.password=$SIPER_PASSWORD -Dpec.username=$PEC_USERNAME -Dpec.password=$PEC_PASSWORD -Djava.awt.headless=true --batch-mode --errors --fail-at-end --show-version"
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml -Dmaven.repo.local=./.m2/repository -Dnexus.url=$NEXUS_URL -Dnexus.login=$NEXUS_USERNAME -Dnexus.pwd=$NEXUS_PASSWORD -Drepository.base.url=$CMIS_BASE_URL -Dsiper.url=$SIPER_URL -Dsiper.username=$SIPER_USERNAME -Dsiper.password=$SIPER_PASSWORD -Dpec.username=$PEC_USERNAME -Dpec.password=$PEC_PASSWORD -Dio.subscriptionkey=$IO_SUBSCRIPTIONKEY -Djava.awt.headless=true --batch-mode --errors --fail-at-end --show-version"
   MAVEN_CLI_CENTRAL_OPTS: "-s .m2/settings.xml -Dmaven.repo.local=./.m2/repository -Pprod,maven-central,release-version,docs -Dnexus.url=$NEXUS_URL -Dsonatype.login=$SONATYPE_USERNAME -Dsonatype.pwd=$SONATYPE_PASSWORD -DskipTests --batch-mode --errors --fail-at-end --show-version"
   CONTAINER_TEST_IMAGE: $CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
   CONTAINER_RELEASE_IMAGE: $CI_PROJECT_PATH:latest
@@ -21,13 +20,13 @@ cache:
     - ./.m2/repository
   # keep cache across branch
   key: "$CI_PROJECT_PATH"
-  
+
 maven-deploy:
   stage: deploy
   image: maven:alpine
   before_script:
     - apk add --update nodejs nodejs-npm ttf-dejavu && rm -rf /var/cache/apk/*
-  script: "mvn clean deploy $MAVEN_CLI_OPTS -Pprod"
+  script: "mvn clean deploy $MAVEN_CLI_OPTS -Pprod -Dspring.profiles.active=siper"
   artifacts:
     paths:
       - target/*.war
@@ -117,6 +116,24 @@ catapult-deploy-image:
       - $CI_COMMIT_MESSAGE =~ /prepare release/ || $CI_COMMIT_MESSAGE =~ /prepare for next development iteration/
     refs:
       - tags
+
+#il deploy su maven central dal tag solo se il deploy della release è fallito per qualche motivo.
+perform-maven-central:
+  stage: release
+  image: maven:alpine
+  script:
+    # Add gpg private key
+    - 'which gnupg || ( apk add --update gnupg && rm -rf /var/cache/apk/*)'
+    - gpg -v --list-keys
+    - echo "pinentry-mode loopback" > /root/.gnupg/gpg.conf
+    - echo "allow-loopback-pinentry" > /root/.gnupg/gpg-agent.conf
+    - gpg --batch --import <(echo "$GPG_PRIVATE_KEY")
+    - mvn clean deploy -Dgpg.passphrase=$GPG_PASSPHRASE -DskipTests -Dresume=false $MAVEN_CLI_CENTRAL_OPTS
+  only:
+    - tags
+  when: manual
+
+
 
 #la release è opzionale e manuale.
 perform-maven-release-maven-central:
