@@ -216,5 +216,120 @@
                 </property>
             </properties>
         </aspect>
+        <aspect name="jconon_agid:aspect_fl_textarea_1">
+            <title>Prima dichiarazione con textarea</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_textarea_1">
+                    <title>di avere la seguente prima dichiarazione</title>
+                    <description>a)</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="jconon_agid:textarea_1">
+                    <title></title>
+                    <description>b) inputType:TEXTAREA class:fl_textarea_1_true</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_fl_textarea_2">
+            <title>Seconda dichiarazione con textarea</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_textarea_2">
+                    <title>di avere la seguente seconda dichiarazione</title>
+                    <description>a)</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="jconon_agid:textarea_2">
+                    <title></title>
+                    <description>b) inputType:TEXTAREA class:fl_textarea_2_true</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_fl_textarea_3">
+            <title>Terza dichiarazione con textarea</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_textarea_3">
+                    <title>di avere la seguente terza dichiarazione</title>
+                    <description>a)</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="jconon_agid:textarea_3">
+                    <title></title>
+                    <description>b) inputType:TEXTAREA class:fl_textarea_3_true</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_fl_textarea_4">
+            <title>Quarta dichiarazione con textarea</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_textarea_4">
+                    <title>di avere la seguente quarta dichiarazione</title>
+                    <description>a)</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="jconon_agid:textarea_4">
+                    <title></title>
+                    <description>b) inputType:TEXTAREA class:fl_textarea_4_true</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_fl_textarea_5">
+            <title>Quinta dichiarazione con textarea</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_textarea_5">
+                    <title>di avere la seguente quinta dichiarazione</title>
+                    <description>a)</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="jconon_agid:textarea_5">
+                    <title></title>
+                    <description>b) inputType:TEXTAREA class:fl_textarea_5_true</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>both</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
     </aspects>
 </model>
