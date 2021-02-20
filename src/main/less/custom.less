@@ -67,7 +67,7 @@ a {
 
 #content > .container:not(.header), #content > .helpdesk-parent, #content > .container-fluid {
   border: 1px solid #CCC;
-  background: #ffffff;
+  background: @default-color;
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
@@ -87,4 +87,10 @@ a {
 
 .agid-login:before {
   content: url('../../res/img/agid-login.png');
+}
+.cnr-checkbox-y {
+    background-color: @default-background-color!important;
+}
+.cnr-checkbox-y:hover, .cnr-checkbox-y:focus {
+    background-position-y: 0px;
 }
