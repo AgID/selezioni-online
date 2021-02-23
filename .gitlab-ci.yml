@@ -76,6 +76,7 @@ docker-build-push-hub:
 #Ad ogni nuovo commit sul master viene fatta la push sul docker registry locale.
 docker-build-push-master:
   stage: build
+  allow_failure: true
   script:
     - docker build -t $CONTAINER_TEST_IMAGE .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -103,6 +104,7 @@ docker-build-push-branches:
 #Aggiorno il container con l'immagine docker creata.
 catapult-deploy-image:
   stage: catapult
+  allow_failure: true
   dependencies:
     - docker-build-push-branches
     - docker-build-push-master
