@@ -14,16 +14,16 @@ Successivamente applicare i seguenti amps:
 ### Docker Alfresco
 In alternativa si può rendere disponibile Alfresco tramite [docker-compose](docker-compose/docker-compose.yml)   
 ```bash
-git clone https://github.com/consiglionazionaledellericerche/cool-jconon-agid.git
-cd cool-jconon-agid/docker-compose
+git clone https://github.com/AgID/selezioni-online.git
+cd selezioni-online/docker-compose
 docker-compose up -d
 ```
 
 ## Compilazione e Primo Avvio
 
 ```bash
-git clone https://github.com/consiglionazionaledellericerche/cool-jconon-agid.git
-cd cool-jconon-agid
+git clone https://github.com/AgID/selezioni-online.git
+cd selezioni-online
 mvn clean install -Pprod
 java -jar target/selezioni-agid.war --spring.profiles.active=prod,agid
 ```
@@ -31,7 +31,7 @@ java -jar target/selezioni-agid.war --spring.profiles.active=prod,agid
 ## Avvio locale
 
 ```bash
-git clone https://github.com/consiglionazionaledellericerche/cool-jconon-agid.git
+git clone https://github.com/AgID/selezioni-online.git
 cd cool-jconon-agid
 mvn clean spring-boot:run -Pprod -Dspring.profiles.active=prod,agid
 ```

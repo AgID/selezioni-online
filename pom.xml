@@ -16,7 +16,8 @@
   ~     along with this program.  If not, see <https://www.gnu.org/licenses />.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -90,7 +91,6 @@
     </dependencies>
 
     <profiles>
-
         <profile>
             <id>prod</id>
             <properties>
@@ -100,6 +100,7 @@
                 <common.cnr.javascript.path>${project.build.directory}/javascript-exploded/META-INF/js/
                 </common.cnr.javascript.path>
             </properties>
+
             <build>
                 <resources>
                     <resource>
@@ -219,7 +220,7 @@
                             <addClasspath>true</addClasspath>
                         </manifest>
                         <manifestEntries>
-                            <Dependencies>org.dom4j,javax.mail.api</Dependencies>      
+                            <Dependencies>org.dom4j,javax.mail.api</Dependencies>
                             <Specification-Title>${project.name}</Specification-Title>
                             <Specification-Version>${project.version}</Specification-Version>
                             <Implementation-Version>${project.version}</Implementation-Version>
@@ -275,11 +276,11 @@
 
                 This program is distributed in the hope that it will be useful,
                 but WITHOUT ANY WARRANTY; without even the implied warranty of
-                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
                 GNU Affero General Public License for more details.
 
                 You should have received a copy of the GNU Affero General Public License
-                along with this program.  If not, see https://www.gnu.org/licenses/
+                along with this program. If not, see https://www.gnu.org/licenses/
             </comments>
         </license>
     </licenses>
@@ -293,5 +294,4 @@
             </roles>
         </developer>
     </developers>
-
 </project>
