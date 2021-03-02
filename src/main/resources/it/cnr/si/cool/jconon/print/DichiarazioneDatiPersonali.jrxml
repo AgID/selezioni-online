@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~    Copyright (C) 2019  Consiglio Nazionale delle Ricerche
-  ~     This program is free software: you can redistribute it and/or modify
-  ~     it under the terms of the GNU Affero General Public License as
-  ~     published by the Free Software Foundation, either version 3 of the
-  ~     License, or (at your option) any later version.
-  ~
-  ~     This program is distributed in the hope that it will be useful,
-  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~     GNU Affero General Public License for more details.
-  ~
-  ~     You should have received a copy of the GNU Affero General Public License
-  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-  -->
-
+<!-- Created with Jaspersoft Studio version 6.15.0.final utlizzo versione della libreria JasperReports6.15.0-dd49bfb94918336b8321d5507193f0169ead4e95  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DichiarazioneSostitutiva" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="28" bottomMargin="28" scriptletClass="net.sf.jasperreports.engine.JRDefaultScriptlet" uuid="6fccba99-1156-4661-99e5-3238586360bb">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -256,211 +241,132 @@
 				<textFieldExpression><![CDATA["INFORMATIVA SUL TRATTAMENTO DEI DATI PERSONALI RESA AI SENSI DELL'ART. 13 DEL REGOLAMENTO UE 2016/679"]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="22" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<textField>
 				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="3" width="514" height="15" uuid="305d7ec8-9537-44e9-a810-1ffec9573c1f"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
 					<font isBold="true" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ai sensi dell'art. 13 del predetto Regolamento, La informiamo che:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Titolare del trattamento dei dati personali"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="20" width="514" height="15" uuid="a14a2196-bfb8-42fd-88dc-59830694414c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["AGID Agenzia per l’Italia Digitale -<BR>Indirizzo: Via Liszt, 21 - 00144 Roma<BR>PEC: <a href=\"protocollo@pec.agid.gov.it\">protocollo@pec.agid.gov.it</a> "]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="3" width="514" height="15" uuid="305d7ec8-9537-44e9-a810-1ffec9573c1f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Contatti del responsabile della protezione dei dati personali"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="20" width="514" height="15" uuid="a14a2196-bfb8-42fd-88dc-59830694414c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[1)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["I suoi dati personali verranno trattati per le seguenti finalità: svolgimento della procedura concorsuale, compreso l’eventuale utilizzo di graduatorie e per la successiva eventuale instaurazione del rapporto di lavoro, per l’esecuzione dei compiti di interesse pubblico o comunque connessi all’esercizio dei pubblici poteri affidati all'Agenzia per l'Italia Digitale. I dati saranno trattati per il tempo necessario alla selezione e, in caso di assunzione, per tutto il periodo in cui intercorre il rapporto di lavoro e, successivamente alla cessazione, per l’eventuale adempimento di obblighi di legge in conformità alle norme vigenti sulla conservazione degli atti amministrativi."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indirizzo: Via Liszt, 21 - 00144 Roma presso AgID<BR>E-mail: <a href=\"responsabileprotezionedati@agid.gov.it\">responsabileprotezionedati@agid.gov.it</a>"]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="3" width="514" height="15" uuid="305d7ec8-9537-44e9-a810-1ffec9573c1f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Finalità e base giuridica del trattamento dei dati"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="20" width="514" height="15" uuid="a14a2196-bfb8-42fd-88dc-59830694414c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[2)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["I dati verranno trattati prevalentemente con strumenti informatici e telematici, con modalità di organizzazione ed elaborazione, correlate alle finalità sopra indicate e, comunque, in modo da garantirne la sicurezza e la riservatezza"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["I dati personali degli interessati sono trattati esclusivamente per consentire ad AGID di espletare le attività di gestione della procedura concorsuale, compreso il controllo sulla veridicità delle informazioni rilasciate dagli interessati."]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="3" width="514" height="15" uuid="305d7ec8-9537-44e9-a810-1ffec9573c1f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Categorie di dati trattati e relativa fonte"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="20" width="514" height="15" uuid="a14a2196-bfb8-42fd-88dc-59830694414c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[3)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Il conferimento dei dati è obbligatorio per l’espletamento della procedura concorsuale; l'eventuale rifiuto di fornire tali dati comporta la mancata possibilità di partecipazione alla procedura stessa."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["I dati personali richiesti all’interessato per la partecipazione alla procedura concorsuale sono quelli indicati nella domanda di partecipazione e, in mancanza del loro conferimento, AGID non potrà accettare la domanda di partecipazione.<BR>AGID può trattare, inoltre, anche dati personali non forniti direttamente dall’interessato ma acquisiti presso soggetti terzi, all’unico fine di verificare la veridicità di quanto asserito dall’interessato ai fini dell’eventuale perfezionamento del vincolo contrattuale."]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="3" width="514" height="15" uuid="305d7ec8-9537-44e9-a810-1ffec9573c1f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Categorie di destinatari dei dati"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="20" width="514" height="15" uuid="a14a2196-bfb8-42fd-88dc-59830694414c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[4)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Possono venire a conoscenza dei dati in questione, per il conseguimento delle finalità sopra indicate, il Direttore/Dirigente della Struttura che ha emanato il bando, il Dirigente dell’Ufficio concorsi e borse di studio, il responsabile del procedimento, il personale incaricato della gestione delle diverse fasi del procedimento, i componenti della commissione esaminatrice e il segretario."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["AGID tratterà autonomamente i dati personali mediante il proprio personale designato nonché mediante i fornitori di servizi tecnici e telematici, nominati responsabili del trattamento.<BR>Alcuni dati saranno soggetti alla necessaria pubblicazione sul sito web istituzionale e/o sul portale <a href=\"http://trasparenza.agid.gov.it/\">http://trasparenza.agid.gov.it/</a> ai sensi del D. Lgs. 33/2013 e potranno essere comunicati a terzi soggetti che lo richiedano nell’esercizio del diritto d’accesso, sempre nei limiti dettati dalla normativa e previa comunicazione all’interessato.<BR>Nessun dato personale è trasferito in Paesi extraeuropei o a Organizzazioni internazionali."]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="3" width="514" height="15" uuid="305d7ec8-9537-44e9-a810-1ffec9573c1f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Periodo di conservazione dei dati"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="20" width="514" height="15" uuid="a14a2196-bfb8-42fd-88dc-59830694414c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[5)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Il Titolare del trattamento è: l'Agenzia per l'Italia Digitale – Via Liszt 21 - 00144 Roma - PEC: protocollo@pec.agid.gov.it, per il tramite dei contatti indicati nell’articolo del bando rubricato “Trattamento dei dati personali”."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["I dati sono conservati per il tempo necessario allo svolgimento e alla gestione amministrativa della procedura concorsuale, secondo quanto previsto dalla normativa vigente con riferimento agli atti amministrativi che li contengono, anche a fini di rendicontazione."]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
-					<font isBold="false" isUnderline="false"/>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="3" width="514" height="15" uuid="305d7ec8-9537-44e9-a810-1ffec9573c1f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[6)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["I dati di contatto del Responsabile della protezione dei dati sono: E-mail: rpd@agid.gov.it; PEC: protocollo@pec.agid.gov.it presso l'Agenzia per l'Italia DIgitale – Via Liszt 21 - 00144 Roma."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Diritti degli interessati"]]></textFieldExpression>
 			</textField>
-		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
+			<textField textAdjust="StretchHeight">
+				<reportElement key="staticText-40" style="FONT_Bold" x="0" y="20" width="514" height="15" uuid="a14a2196-bfb8-42fd-88dc-59830694414c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[7)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["La graduatoria finale di merito verrà pubblicata con le modalità indicate nel bando di concorso, ai sensi dell’art. 15, DPR n. 487/1994."]]></textFieldExpression>
-			</textField>
-		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[8)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Al termine della procedura concorsuale, nei limiti pertinenti le finalità sopra indicate, i dati del candidato potranno essere comunicati a soggetti terzi, in conformità agli obblighi previsti da leggi, regolamenti, normativa nazionale e comunitaria, nonché da disposizioni impartite da autorità a ciò legittimate da organi di vigilanza e di controllo, ai sensi dell’art. 6 del Reg. UE 2016/679."]]></textFieldExpression>
-			</textField>
-		</band>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[9)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["In qualità di interessato, il candidato ha il diritto di chiedere al Titolare l'accesso ai dati personali che lo riguardano nonché di esercitare i diritti di cui agli articoli 15 e seguenti del Regolamento (UE) 2016/679 tra cui richiedere la rettifica o la cancellazione degli stessi o la limitazione del trattamento o di opporsi al trattamento presentando apposita istanza al contatto di cui al precedente punto 5."]]></textFieldExpression>
-			</textField>
-		</band>
-		<band height="48" splitType="Stretch">
-			<staticText>
-				<reportElement key="staticText-40" style="FONT_Bold" x="5" y="4" width="15" height="15" uuid="7744f97f-13e4-4e19-8baa-763d0ac44789"/>
-				<textElement verticalAlignment="Top">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[10)]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement key="staticText-40" style="FONT_Bold" x="22" y="4" width="492" height="15" uuid="7ed1ea52-befb-4f75-a296-421e18954665"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top" markup="none">
-					<font isBold="false" isUnderline="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA["In qualità di interessato, ricorrendone i presupposti, il candidato può presentare reclamo al Garante per la protezione dei dati personali quale autorità di controllo secondo le procedure previste."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Gli interessati hanno il diritto di ottenere da AGID l’accesso ai propri dati personali, la rettifica o la cancellazione degli stessi, la limitazione del trattamento o il diritto di opporsi allo stesso e la portabilità, ove ne ricorrano i presupposti. Le richieste vanno rivolte ad AGID, contattando il responsabile della protezione dei dati personali.<BR>Fatto salvo ogni altro ricorso amministrativo o giurisdizionale, è diritto degli interessati proporre reclamo al Garante per la protezione dei dati personali qualora ritengano che il trattamento dei propri dati violi il Regolamento.<BR>AGID garantisce che non è prevista alcuna forma di processo decisionale esclusivamente automatizzato che comporti effetti giuridici sull’interessato."]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="22" splitType="Stretch">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="22" y="5" width="492" height="15" isRemoveLineWhenBlank="true" uuid="524a1ee2-0bb8-49c8-be1e-ffdc8fc51ffe"/>
-				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[($F{jconon_application:sesso}.equals("F")?"La sottoscritta":"Il sottoscritto") +
-" " + $F{jconon_application:cognome}.toUpperCase() + " " + $F{jconon_application:nome}.toUpperCase() +
-($F{jconon_application:sesso}.equals("F")?" nata a ":" nato a ") +
-$F{jconon_application:comune_nascita} + " (" + $F{jconon_application:provincia_nascita} +")" +
-" il " + new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse($F{jconon_application:data_nascita}))]]></textFieldExpression>
-			</textField>
-		</band>
-		<band height="22" splitType="Stretch">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="22" y="5" width="492" height="15" isRemoveLineWhenBlank="true" uuid="524a1ee2-0bb8-49c8-be1e-ffdc8fc51ffe"/>
-				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA["residente a " +
-$F{jconon_application:comune_residenza} +
-" (" + $F{jconon_application:provincia_residenza} +")" +
-" in " + $F{jconon_application:indirizzo_residenza} +
-" num. " + $F{jconon_application:num_civico_residenza}]]></textFieldExpression>
-			</textField>
-		</band>
-		<band height="22" splitType="Stretch">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="22" y="5" width="492" height="15" isRemoveLineWhenBlank="true" uuid="524a1ee2-0bb8-49c8-be1e-ffdc8fc51ffe"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA["Per presa visione"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="31" splitType="Stretch">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="22" y="10" width="156" height="15" isRemoveLineWhenBlank="true" uuid="524a1ee2-0bb8-49c8-be1e-ffdc8fc51ffe"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA["Data " + new SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="296" y="10" width="156" height="15" isRemoveLineWhenBlank="true" uuid="a9d882d8-63a5-4d8e-ae1a-72e0dd435298"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA["(Firma)"]]></textFieldExpression>
