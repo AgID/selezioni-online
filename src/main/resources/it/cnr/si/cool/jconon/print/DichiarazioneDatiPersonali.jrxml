@@ -254,7 +254,7 @@
 				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["AGID Agenzia per l’Italia Digitale -<BR>Indirizzo: Via Liszt, 21 - 00144 Roma<BR>PEC: <a href=\"protocollo@pec.agid.gov.it\">protocollo@pec.agid.gov.it</a> "]]></textFieldExpression>
+				<textFieldExpression><![CDATA["AGID Agenzia per l’Italia Digitale -<BR>Indirizzo: Via Liszt, 21 - 00144 Roma<BR>PEC: <a href=\"mailto:protocollo@pec.agid.gov.it\">protocollo@pec.agid.gov.it</a> "]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="40" splitType="Stretch">
@@ -270,7 +270,7 @@
 				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Indirizzo: Via Liszt, 21 - 00144 Roma presso AgID<BR>E-mail: <a href=\"responsabileprotezionedati@agid.gov.it\">responsabileprotezionedati@agid.gov.it</a>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Indirizzo: Via Liszt, 21 - 00144 Roma presso AgID<BR>E-mail: <a href=\"mailto:responsabileprotezionedati@agid.gov.it\">responsabileprotezionedati@agid.gov.it</a>"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="40" splitType="Stretch">
