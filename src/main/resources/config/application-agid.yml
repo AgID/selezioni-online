@@ -43,6 +43,10 @@ attiva:
   protocol:
     application: false
 
+block:
+  submit:
+    employee: false
+
 agid-login:
   name: AGID@login
   url: https://login.agid.gov.it
