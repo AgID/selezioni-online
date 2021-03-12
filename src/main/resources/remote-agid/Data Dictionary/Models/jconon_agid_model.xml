@@ -174,7 +174,7 @@
             <properties>
                 <property name="jconon_agid:fl_eta_non_inferiore_diciotto">
                     <title>di avere età non inferiore agli anni diciotto</title>
-                    <description>ui.radio</description>
+                    <description>di avere età non inferiore agli anni diciotto</description>
                     <type>d:boolean</type>
                     <mandatory>true</mandatory>
                 </property>
