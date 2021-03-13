@@ -26,7 +26,7 @@
     </parent>
 
     <artifactId>cool-jconon-agid</artifactId>
-    <version>1.0.11</version>
+    <version>1.0.12-SNAPSHOT</version>
     <name>Concorsi On-Line AGID</name>
 
     <properties>
@@ -258,7 +258,7 @@
         <connection>scm:git:ssh://git@git.si.cnr.it/documentale/cool-jconon-agid.git</connection>
         <developerConnection>scm:git:ssh://git@git.si.cnr.it/documentale/cool-jconon-agid.git</developerConnection>
         <url>http://git.si.cnr.it/documentale/cool-jconon-agid</url>
-        <tag>1.0.11</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
