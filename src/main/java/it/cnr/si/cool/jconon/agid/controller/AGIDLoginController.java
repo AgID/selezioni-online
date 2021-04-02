@@ -7,6 +7,7 @@ import it.cnr.si.cool.jconon.agid.repository.AGIDLoginRepository;
 import it.cnr.si.cool.jconon.agid.repository.AccessToken;
 import it.cnr.si.cool.jconon.agid.repository.UserInfo;
 import it.cnr.si.cool.jconon.agid.service.AGIDLoginService;
+import it.cnr.si.cool.jconon.util.CodiceFiscaleControllo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/openapi/agid-login")
@@ -33,6 +35,7 @@ import java.util.Optional;
 public class AGIDLoginController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AGIDLoginController.class);
     public static final String AGID_LOGIN_TOKEN = "AGIDLoginToken";
+    public static final String SPID = "SPID";
     private final AGIDLoginConfigurationProperties properties;
     private final AGIDLogin agidLogin;
     private final AGIDLoginService agidLoginService;
@@ -115,6 +118,15 @@ public class AGIDLoginController {
                     properties.getClient_id(),
                     properties.getClient_secret());
             LOGGER.info("UserInfo: {}", userInfo);
+            if (Optional.ofNullable(userInfo)
+                    .flatMap(userInfo1 -> Optional.ofNullable(userInfo1.getSub()))
+                    .filter(sub -> !sub.startsWith(SPID))
+                    .isPresent() &&
+                        !Optional.ofNullable(userInfo)
+                            .flatMap(userInfo1 -> Optional.ofNullable(userInfo1.getFiscalNumber()))
+                            .isPresent()) {
+                userInfo.setFiscalNumber(calculateFiscalNumber(userInfo));
+            }
             try {
                 if (!Optional.ofNullable(userInfo.getFirstname()).isPresent() ||
                         !Optional.ofNullable(userInfo.getLastname()).isPresent() ||
@@ -138,6 +150,24 @@ public class AGIDLoginController {
             );
             return new ModelAndView("redirect:/", model);
         }
+    }
+
+    private String calculateFiscalNumber(UserInfo userInfo) {
+        return Arrays.asList(
+            CodiceFiscaleControllo.calcolaCodCognome(
+                    Optional.ofNullable(userInfo)
+                        .flatMap(userInfo1 -> Optional.ofNullable(userInfo1.getLastname()))
+                        .map(String::toUpperCase)
+                        .orElse("XXX")
+            ),
+            CodiceFiscaleControllo.calcolaCodNome(
+                    Optional.ofNullable(userInfo)
+                            .flatMap(userInfo1 -> Optional.ofNullable(userInfo1.getFirstname()))
+                            .map(String::toUpperCase)
+                            .orElse("XXX")
+            ),
+            "00A00A000A"
+        ).stream().collect(Collectors.joining());
     }
 
     private Cookie getCookie(String ticket, boolean secure) {
