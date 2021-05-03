@@ -2,3 +2,6 @@
 target
 logs
 /cool-jconon-agid.iml
+/.classpath
+/.project
+/.settings/

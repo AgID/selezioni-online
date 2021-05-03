@@ -22,6 +22,8 @@ ipa:
 mail:
   from:
     default: concorsi@agid.gov.it
+  protocol:
+    to: eprot1@pec.almaviva.it
 
 hazelcast:
   members: 127.0.0.1
@@ -41,7 +43,11 @@ security:
 
 attiva:
   protocol:
-    application: false
+    application: true
+
+timer:
+  cron:
+    protocol: 0 0 2 * * *
 
 block:
   submit:
