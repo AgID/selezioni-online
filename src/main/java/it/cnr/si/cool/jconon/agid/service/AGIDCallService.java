@@ -90,6 +90,7 @@ public class AGIDCallService extends CallService {
                                 JCONONPropertyIds.APPLICATION_STATO_DOMANDA.value()).equals(ApplicationService.StatoDomanda.CONFERMATA.getValue()))
                         .filter(Folder.class::isInstance)
                         .map(Folder.class::cast)
+                        .sorted(Comparator.comparing(folder -> folder.getPropertyValue(JCONONPropertyIds.APPLICATION_DATA_DOMANDA.value())))
                         .collect(Collectors.toList());
                 for (Folder domanda : applications) {
                     final CMISUser cmisUser = userService.loadUserForConfirm(
