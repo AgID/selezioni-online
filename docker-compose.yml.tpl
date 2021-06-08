@@ -14,4 +14,3 @@ jconon:
   command: java -Xmx512m -Xss512k -Djavax.net.ssl.trustStore=/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dspring.profiles.active=prod,agid -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8787 -Djava.security.egd=file:/dev/./urandom -jar /opt/selezioni-agid.war
   labels:
   - SERVICE_NAME=##{SERVICE_NAME}##
-  - PUBLIC_NAME=democnr.agid.gov.it
