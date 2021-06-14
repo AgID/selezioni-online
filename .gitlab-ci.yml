@@ -15,11 +15,11 @@ variables:
   CONTAINER_TEST_IMAGE: $CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
   CONTAINER_RELEASE_IMAGE: $CI_PROJECT_PATH:latest
 
-cache:
-  paths:
-    - ./.m2/repository
+#cache:
+#  paths:
+#    - ./.m2/repository
   # keep cache across branch
-  key: "$CI_PROJECT_PATH"
+#  key: "$CI_PROJECT_PATH"
 
 maven-deploy:
   stage: deploy
