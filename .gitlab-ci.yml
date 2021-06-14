@@ -27,6 +27,7 @@ maven-deploy:
   before_script:
     - apk add --update nodejs nodejs-npm ttf-dejavu && rm -rf /var/cache/apk/*
   script: "mvn clean deploy $MAVEN_CLI_OPTS -Pprod -Dspring.profiles.active=siper"
+  allow_failure: true
   artifacts:
     paths:
       - target/*.war
@@ -40,6 +41,7 @@ maven-install:
   stage: deploy
   image: maven:alpine
   script: "mvn clean install $MAVEN_CLI_OPTS"
+  allow_failure: true
   artifacts:
     paths:
       - target/*.war
@@ -53,6 +55,7 @@ maven-deploy-tag:
   before_script:
     - apk add --update nodejs nodejs-npm && rm -rf /var/cache/apk/*
   script: "mvn clean deploy $MAVEN_CLI_OPTS -Pprod -DskipTests"
+  allow_failure: true
   artifacts:
     paths:
       - target/*.war
@@ -69,6 +72,7 @@ docker-build-push-hub:
     - docker tag $CI_PROJECT_NAME:$CI_COMMIT_REF_NAME $DOCKER_HUB_ORGANIZATION/$CI_PROJECT_NAME:latest
     - docker push $DOCKER_HUB_ORGANIZATION/$CI_PROJECT_NAME:$CI_COMMIT_REF_NAME
     - docker push $DOCKER_HUB_ORGANIZATION/$CI_PROJECT_NAME:latest
+  allow_failure: true
   only:
     - tags
 
@@ -97,6 +101,7 @@ docker-build-push-branches:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker tag $CONTAINER_TEST_IMAGE $CI_REGISTRY/$CONTAINER_TEST_IMAGE
     - docker push $CI_REGISTRY/$CONTAINER_TEST_IMAGE
+  allow_failure: true
   except:
     - tags
     - master
@@ -131,6 +136,7 @@ perform-maven-central:
     - echo "allow-loopback-pinentry" > /root/.gnupg/gpg-agent.conf
     - gpg --batch --import <(echo "$GPG_PRIVATE_KEY")
     - mvn clean deploy -Dgpg.passphrase=$GPG_PASSPHRASE -DskipTests -Dresume=false $MAVEN_CLI_CENTRAL_OPTS
+  allow_failure: true
   only:
     - tags
   when: manual
@@ -171,6 +177,7 @@ perform-maven-release-maven-central:
     - gpg --batch --import <(echo "$GPG_PRIVATE_KEY")
     - mvn release:clean release:prepare -DreleaseVersion=$MAVEN_RELEASE_VERSION -Darguments="-Dgpg.passphrase=$GPG_PASSPHRASE -DskipTests" -Dresume=false -B $MAVEN_CLI_CENTRAL_OPTS
     - mvn release:perform -Darguments="-Dgpg.passphrase=$GPG_PASSPHRASE -DskipTests" -Dresume=false -B $MAVEN_CLI_CENTRAL_OPTS
+  allow_failure: true
   only:
     variables:
       - $CI_COMMIT_MESSAGE !~ /prepare release/ && $CI_COMMIT_MESSAGE !~ /prepare for next development iteration/
