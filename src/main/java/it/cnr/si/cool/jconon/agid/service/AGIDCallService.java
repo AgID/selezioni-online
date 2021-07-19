@@ -135,9 +135,9 @@ public class AGIDCallService extends CallService {
                                 printApplication.getName(),
                                 IOUtils.toByteArray(printApplication.getContentStream().getStream())
                         )));
-                        message.setReplyTo(
+                        message.setSender(
                                 Optional.ofNullable(domanda.<String>getPropertyValue(JCONONPropertyIds.APPLICATION_EMAIL_COMUNICAZIONI.value()))
-                                        .orElse(cmisUser.getEmail())
+                                        message.setmessage.setSender
                         );
                         mailService.send(message);
                     } catch (Exception e) {
