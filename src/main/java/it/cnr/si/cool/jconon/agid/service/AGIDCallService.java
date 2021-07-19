@@ -137,7 +137,7 @@ public class AGIDCallService extends CallService {
                         )));
                         message.setSender(
                                 Optional.ofNullable(domanda.<String>getPropertyValue(JCONONPropertyIds.APPLICATION_EMAIL_COMUNICAZIONI.value()))
-                                        message.setmessage.setSender
+                                        .orElse(cmisUser.getEmail())
                         );
                         mailService.send(message);
                     } catch (Exception e) {
