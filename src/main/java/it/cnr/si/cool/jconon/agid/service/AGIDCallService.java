@@ -42,6 +42,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Primary
@@ -84,14 +85,20 @@ public class AGIDCallService extends CallService {
         }
         if (totalNumItems != 0) {
             try {
-                List<Folder> applications = StreamSupport.stream(call.getChildren().spliterator(), false)
+                Iterator<CmisObject> iterator = call.getChildren().iterator();
+                int characteristics = Spliterator.DISTINCT | Spliterator.SORTED | Spliterator.ORDERED;
+                Spliterator<CmisObject> spliterator = Spliterators.spliteratorUnknownSize(iterator, characteristics);
+                boolean parallel = false;
+                Stream<CmisObject> children = StreamSupport.stream(spliterator, parallel);
+                List<Folder> applications = children
                         .filter(cmisObject -> cmisObject.getType().getId().equals(JCONONFolderType.JCONON_APPLICATION.value()))
                         .filter(cmisObject -> cmisObject.getPropertyValue(
                                 JCONONPropertyIds.APPLICATION_STATO_DOMANDA.value()).equals(ApplicationService.StatoDomanda.CONFERMATA.getValue()))
                         .filter(Folder.class::isInstance)
                         .map(Folder.class::cast)
-                        .sorted(Comparator.comparing(folder -> folder.getPropertyValue(JCONONPropertyIds.APPLICATION_DATA_DOMANDA.value())))
+                        .sorted(Comparator.comparing(folder -> folder.getPropertyValue(PropertyIds.LAST_MODIFICATION_DATE)))
                         .collect(Collectors.toList());
+
                 for (Folder domanda : applications) {
                     final CMISUser cmisUser = userService.loadUserForConfirm(
                             domanda.getPropertyValue(JCONONPropertyIds.APPLICATION_USER.value())
