@@ -30,6 +30,7 @@ import it.cnr.si.opencmis.criteria.Criteria;
 import it.cnr.si.opencmis.criteria.CriteriaFactory;
 import it.cnr.si.opencmis.criteria.restrictions.Restrictions;
 import org.apache.chemistry.opencmis.client.api.*;
+import org.apache.chemistry.opencmis.client.util.OperationContextUtils;
 import org.apache.chemistry.opencmis.commons.PropertyIds;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -41,9 +42,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 @Primary
 @Service
@@ -85,21 +83,15 @@ public class AGIDCallService extends CallService {
         }
         if (totalNumItems != 0) {
             try {
-                Iterator<CmisObject> iterator = call.getChildren().iterator();
-                int characteristics = Spliterator.DISTINCT | Spliterator.SORTED | Spliterator.ORDERED;
-                Spliterator<CmisObject> spliterator = Spliterators.spliteratorUnknownSize(iterator, characteristics);
-                boolean parallel = false;
-                Stream<CmisObject> children = StreamSupport.stream(spliterator, parallel);
-                List<Folder> applications = children
-                        .filter(cmisObject -> cmisObject.getType().getId().equals(JCONONFolderType.JCONON_APPLICATION.value()))
-                        .filter(cmisObject -> cmisObject.getPropertyValue(
-                                JCONONPropertyIds.APPLICATION_STATO_DOMANDA.value()).equals(ApplicationService.StatoDomanda.CONFERMATA.getValue()))
-                        .filter(Folder.class::isInstance)
-                        .map(Folder.class::cast)
-                        .sorted(Comparator.comparing(folder -> folder.getPropertyValue(PropertyIds.LAST_MODIFICATION_DATE)))
-                        .collect(Collectors.toList());
-
-                for (Folder domanda : applications) {
+                OperationContext operationContext = OperationContextUtils.copyOperationContext(session.getDefaultContext());
+                operationContext.setOrderBy(PropertyIds.LAST_MODIFICATION_DATE);
+                for (CmisObject cmisObject  : call.getChildren(operationContext).getPage(Integer.MAX_VALUE)) {
+                    if (!cmisObject.getType().getId().equals(JCONONFolderType.JCONON_APPLICATION.value()) ||
+                            !cmisObject.getPropertyValue(
+                                    JCONONPropertyIds.APPLICATION_STATO_DOMANDA.value()).equals(ApplicationService.StatoDomanda.CONFERMATA.getValue())) {
+                        continue;
+                    }
+                    Folder domanda = (Folder)cmisObject;
                     final CMISUser cmisUser = userService.loadUserForConfirm(
                             domanda.getPropertyValue(JCONONPropertyIds.APPLICATION_USER.value())
                     );
