@@ -64,3 +64,12 @@ agid-login:
   client_secret: secret
   response_type: code
   scope: openid profile
+
+protocollo:
+  url: https://gestionedocumentale.agid.gov.it/protocolloagidws/protocolloWSSOAP
+  aoo: ADG
+  ufficio: ufficio_test_cnr
+  utente: test-protocollo-1@agid.gov.it
+  password: secret
+  tipoProtocollo: I
+  tipoDocumento: DOMANDA DI CONCORSO

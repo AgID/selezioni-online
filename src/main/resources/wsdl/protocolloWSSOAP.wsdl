@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://eprot.almaviva.it/protocolloWS"
+                  xmlns:impl="http://eprot.almaviva.it/protocolloWS"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://eprot.almaviva.it/protocolloWS" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="IdentificazioneType">
+    <sequence>
+     <element name="Aoo" nillable="true" type="xsd:string"/>
+     <element name="Ufficio" nillable="true" type="xsd:string"/>
+     <element name="Utente" nillable="true" type="xsd:string"/>
+     <element name="Password" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FascicoloType">
+    <sequence>
+     <element maxOccurs="1" minOccurs="0" name="Anno" nillable="true" type="xsd:int"/>
+     <element maxOccurs="1" minOccurs="0" name="Numero" nillable="true" type="xsd:int"/>
+     <element maxOccurs="1" minOccurs="0" name="Oggetto" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Ufficio" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Utente" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="AssegnatarioType">
+    <sequence>
+     <element name="Ufficio" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Utente" nillable="true" type="xsd:string"/>
+     <element name="Competenza" type="xsd:int"/>
+     <element maxOccurs="1" minOccurs="0" name="Messaggio" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DestinatarioType">
+    <sequence>
+     <element name="Nominativo" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Indirizzo" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Email" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="MezzoSpedizione" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="DataSpedizione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DocumentoType">
+    <sequence>
+     <element name="TipoDocumento" nillable="true" type="xsd:string"/>
+     <element name="NomeFile" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="PathFile" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="DocUrl" nillable="true" type="xsd:string"/>
+     <element name="FileBase64" nillable="true" type="xsd:base64Binary"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProtocolloType">
+    <sequence>
+     <element name="TipoProtocollo" nillable="true" type="xsd:string"/>
+     <element name="Oggetto" nillable="true" type="xsd:string"/>
+     <element name="Mittente" nillable="true" type="xsd:string"/>
+     <element name="Titolario" nillable="true" type="xsd:string"/>
+     <element name="Nota" nillable="true" type="xsd:string"/>
+     <element name="TipoDocumento" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="Fascicoli" nillable="true">
+      <complexType>
+       <sequence>
+        <element name="Fascicolo" nillable="true" type="impl:FascicoloType"/>
+       </sequence>
+      </complexType>
+     </element>
+     <element maxOccurs="unbounded" minOccurs="0" name="Assegnatari" nillable="true">
+      <complexType>
+       <sequence>
+        <element name="Assegnatario" nillable="true" type="impl:AssegnatarioType"/>
+       </sequence>
+      </complexType>
+     </element>
+     <element maxOccurs="unbounded" minOccurs="0" name="Destinatari" nillable="true">
+      <complexType>
+       <sequence>
+        <element name="Destinatario" nillable="true" type="impl:DestinatarioType"/>
+       </sequence>
+      </complexType>
+     </element>
+     <element maxOccurs="unbounded" minOccurs="0" name="Documenti" nillable="true">
+      <complexType>
+       <sequence>
+        <element name="Documento" nillable="true" type="impl:DocumentoType"/>
+       </sequence>
+      </complexType>
+     </element>
+    </sequence>
+   </complexType>
+   <complexType name="RegistraRequestType">
+    <sequence>
+     <element name="Identificazione" nillable="true" type="impl:IdentificazioneType"/>
+     <element name="Protocollo" nillable="true" type="impl:ProtocolloType"/>
+     <element maxOccurs="1" minOccurs="0" name="Directory" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="RegistraProtocolloRequest" type="impl:RegistraRequestType"/>
+   <complexType name="ResponseType">
+    <sequence>
+     <element name="Esito" nillable="true" type="xsd:string"/>
+     <element name="DescrizioneEsito" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="NumeroProtocollo" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="TipoProtocollo" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="DataProtocollo" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="UrlDocumento" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="RegistraProtocolloResponse" type="impl:ResponseType"/>
+   <complexType name="RicercaRequestType">
+    <sequence>
+     <element name="Identificazione" nillable="true" type="impl:IdentificazioneType"/>
+     <element maxOccurs="1" minOccurs="0" name="Tipo" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="AnnoProtocolloDa" nillable="true" type="xsd:int"/>
+     <element maxOccurs="1" minOccurs="0" name="AnnoProtocolloA" nillable="true" type="xsd:int"/>
+     <element maxOccurs="1" minOccurs="0" name="NumeroProtocolloDa" nillable="true" type="xsd:int"/>
+     <element maxOccurs="1" minOccurs="0" name="NumeroProtocolloA" nillable="true" type="xsd:int"/>
+     <element maxOccurs="1" minOccurs="0" name="Titolario" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="TitolarioFigli" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="DataRegistrazioneDa" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="DataRegistrazioneA" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="UfficioAssegnatario" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="UtenteAssegnatario" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Stato" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="RicercaProtocolliRequest" type="impl:RicercaRequestType"/>
+   <complexType name="ProtocolloViewType">
+    <sequence>
+     <element name="Anno" nillable="true" type="xsd:string"/>
+     <element name="Numero" nillable="true" type="xsd:string"/>
+     <element name="DataRegistrazione" nillable="true" type="xsd:string"/>
+     <element name="TipoProtocollo" nillable="true" type="xsd:string"/>
+     <element name="TipoDocumento" nillable="true" type="xsd:string"/>
+     <element name="Oggetto" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Mittente" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Titolario" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Nota" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="Assegnatari" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="Destinatari" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="Documenti" nillable="true" type="impl:DocumentoType"/>
+    </sequence>
+   </complexType>
+   <complexType name="RicercaResponseType">
+    <sequence>
+     <element name="Esito" nillable="true" type="xsd:string"/>
+     <element name="DescrizioneEsito" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="Protocolli" nillable="true" type="impl:ProtocolloViewType"/>
+    </sequence>
+   </complexType>
+   <element name="RicercaProtocolliResponse" type="impl:RicercaResponseType"/>
+   <complexType name="ModificaAssegnazioni">
+    <sequence>
+     <element name="AssegnatarioOld" nillable="true" type="impl:AssegnatarioType"/>
+     <element name="AssegnatarioNew" nillable="true" type="impl:AssegnatarioType"/>
+    </sequence>
+   </complexType>
+   <complexType name="AggiornaProtocolloRequest">
+    <sequence>
+     <element name="Identificazione" nillable="true" type="impl:IdentificazioneType"/>
+     <element name="AnnoProtocollo" type="xsd:int"/>
+     <element name="NumeroProtocollo" type="xsd:int"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="Assegnatari" nillable="true" type="impl:ModificaAssegnazioni"/>
+     <element maxOccurs="1" minOccurs="0" name="Titolario" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Nota" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="ModificaProtocolloRequest" type="impl:AggiornaProtocolloRequest"/>
+   <element name="ModificaProtocolloResponse" type="impl:ResponseType"/>
+   <complexType name="AnnoNumeroProtocolloType">
+    <sequence>
+     <element name="Anno" nillable="true" type="xsd:string"/>
+     <element name="Numero" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="AssegnazioneMultiplaRequestType">
+    <sequence>
+     <element name="Identificazione" nillable="true" type="impl:IdentificazioneType"/>
+     <element maxOccurs="unbounded" name="Protocolli" nillable="true" type="impl:AnnoNumeroProtocolloType"/>
+     <element maxOccurs="unbounded" name="Assegnazioni" nillable="true" type="impl:AssegnatarioType"/>
+    </sequence>
+   </complexType>
+   <element name="AssegnazioneMultiplaRequest" type="impl:AssegnazioneMultiplaRequestType"/>
+   <complexType name="AssegnazioneMultiplaResponseType">
+    <sequence>
+     <element name="Esito" nillable="true" type="xsd:string"/>
+     <element name="Descrizione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="AssegnazioneMultiplaResponse" type="impl:AssegnazioneMultiplaResponseType"/>
+   <complexType name="CodaInvioPecRequestType">
+    <sequence>
+     <element name="Identificazione" nillable="true" type="impl:IdentificazioneType"/>
+     <element maxOccurs="1" minOccurs="0" name="DataMessaggioDa" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="DataMessaggioA" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="Protocollo" nillable="true" type="impl:AnnoNumeroProtocolloType"/>
+     <element maxOccurs="1" minOccurs="0" name="Stato" nillable="true" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="emailDestinatario" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="CodaInvioPecRequest" type="impl:CodaInvioPecRequestType"/>
+   <complexType name="CodaInvioPecType">
+    <sequence>
+     <element name="MessaggioId" nillable="true" type="xsd:string"/>
+     <element name="NumeroAnnoProtocollo" nillable="true" type="xsd:string"/>
+     <element name="Oggetto" nillable="true" type="xsd:string"/>
+     <element name="Data" nillable="true" type="xsd:string"/>
+     <element name="Email" nillable="true" type="xsd:string"/>
+     <element name="Stato" nillable="true" type="xsd:string"/>
+     <element name="TipoEmail" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CodaInvioPecResponseType">
+    <sequence>
+     <element name="Esito" nillable="true" type="xsd:string"/>
+     <element name="Descrizione" nillable="true" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="Coda" nillable="true" type="impl:CodaInvioPecType"/>
+    </sequence>
+   </complexType>
+   <element name="CodaInvioPecResponse" type="impl:CodaInvioPecResponseType"/>
+   <element name="AnnullaProtocolloRequest">
+    <complexType>
+     <sequence>
+      <element name="Identificazione" nillable="true" type="impl:IdentificazioneType"/>
+      <element name="AnnoProtocollo" type="xsd:int"/>
+      <element name="NumeroProtocollo" type="xsd:int"/>
+      <element name="Motivazione" nillable="true" type="xsd:string"/>
+      <element maxOccurs="1" minOccurs="0" name="Nota" nillable="true" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="AnnullaProtocolloResponseType">
+    <sequence>
+     <element name="Esito" nillable="true" type="xsd:string"/>
+     <element name="Descrizione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="AnnullaProtocolloResponse" type="impl:AnnullaProtocolloResponseType"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="AnnullaProtocolloResponse">
+
+      <wsdl:part element="impl:AnnullaProtocolloResponse" name="AnnullaProtocolloResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="RicercaProtocolliRequest">
+
+      <wsdl:part element="impl:RicercaProtocolliRequest" name="RicercaProtocolliRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="AssegnazioneMultiplaRequest">
+
+      <wsdl:part element="impl:AssegnazioneMultiplaRequest" name="AssegnazioneMultiplaRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="AnnullaProtocolloRequest">
+
+      <wsdl:part element="impl:AnnullaProtocolloRequest" name="AnnullaProtocolloRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="RegistraProtocolloResponse">
+
+      <wsdl:part element="impl:RegistraProtocolloResponse" name="RegistraProtocolloResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="RegistraProtocolloRequest">
+
+      <wsdl:part element="impl:RegistraProtocolloRequest" name="RegistraProtocolloRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="CodaInvioPECResponse">
+
+      <wsdl:part element="impl:CodaInvioPecResponse" name="CodaInvioPecResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="CodaInvioPECRequest">
+
+      <wsdl:part element="impl:CodaInvioPecRequest" name="CodaInvioPecRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModificaProtocolloResponse">
+
+      <wsdl:part element="impl:ModificaProtocolloResponse" name="ModificaProtocolloResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="AssegnazioneMultiplaResponse">
+
+      <wsdl:part element="impl:AssegnazioneMultiplaResponse" name="AssegnazioneMultiplaResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="RicercaProtocolliResponse">
+
+      <wsdl:part element="impl:RicercaProtocolliResponse" name="RicercaProtocolliResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ModificaProtocolloRequest">
+
+      <wsdl:part element="impl:ModificaProtocolloRequest" name="ModificaProtocolloRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="protocolloWS">
+
+      <wsdl:operation name="RegistraProtocollo" parameterOrder="RegistraProtocolloRequest">
+
+         <wsdl:input message="impl:RegistraProtocolloRequest" name="RegistraProtocolloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:RegistraProtocolloResponse" name="RegistraProtocolloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="RicercaProtocolli" parameterOrder="RicercaProtocolliRequest">
+
+         <wsdl:input message="impl:RicercaProtocolliRequest" name="RicercaProtocolliRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:RicercaProtocolliResponse" name="RicercaProtocolliResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModificaProtocollo" parameterOrder="ModificaProtocolloRequest">
+
+         <wsdl:input message="impl:ModificaProtocolloRequest" name="ModificaProtocolloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:ModificaProtocolloResponse" name="ModificaProtocolloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="AssegnazioneMultipla" parameterOrder="AssegnazioneMultiplaRequest">
+
+         <wsdl:input message="impl:AssegnazioneMultiplaRequest" name="AssegnazioneMultiplaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:AssegnazioneMultiplaResponse" name="AssegnazioneMultiplaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CodaInvioPEC" parameterOrder="CodaInvioPecRequest">
+
+         <wsdl:input message="impl:CodaInvioPECRequest" name="CodaInvioPECRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:CodaInvioPECResponse" name="CodaInvioPECResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="AnnullaProtocollo" parameterOrder="AnnullaProtocolloRequest">
+
+         <wsdl:input message="impl:AnnullaProtocolloRequest" name="AnnullaProtocolloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:AnnullaProtocolloResponse" name="AnnullaProtocolloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="protocolloWSSOAPSoapBinding" type="impl:protocolloWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="RegistraProtocollo">
+
+         <wsdlsoap:operation soapAction="http://eprot.almaviva.it/protocolloWS/Registra"/>
+
+         <wsdl:input name="RegistraProtocolloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="RegistraProtocolloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="RicercaProtocolli">
+
+         <wsdlsoap:operation soapAction="http://eprot.almaviva.it/protocolloWS/Ricerca"/>
+
+         <wsdl:input name="RicercaProtocolliRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="RicercaProtocolliResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ModificaProtocollo">
+
+         <wsdlsoap:operation soapAction="http://eprot.almaviva.it/protocolloWS/ModificaProtocollo"/>
+
+         <wsdl:input name="ModificaProtocolloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ModificaProtocolloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="AssegnazioneMultipla">
+
+         <wsdlsoap:operation soapAction="http://eprot.almaviva.it/protocolloWS/AssegnazioneMultipla"/>
+
+         <wsdl:input name="AssegnazioneMultiplaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="AssegnazioneMultiplaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="CodaInvioPEC">
+
+         <wsdlsoap:operation soapAction="http://eprot.almaviva.it/protocolloWS/CodaInvioPEC"/>
+
+         <wsdl:input name="CodaInvioPECRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CodaInvioPECResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="AnnullaProtocollo">
+
+         <wsdlsoap:operation soapAction="http://eprot.almaviva.it/protocolloWS/AnnullaProtocollo"/>
+
+         <wsdl:input name="AnnullaProtocolloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="AnnullaProtocolloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="protocolloWS">
+
+      <wsdl:port binding="impl:protocolloWSSOAPSoapBinding" name="protocolloWSSOAP">
+
+         <wsdlsoap:address location="http://10.198.68.35:8080/protocolloagidws/protocolloWSSOAP"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
