@@ -21,7 +21,6 @@ import it.almaviva.eprot.ResponseType;
 import it.cnr.si.cool.jconon.agid.config.AGIDLoginConfiguration;
 import it.cnr.si.cool.jconon.agid.config.ProtocolloClient;
 import it.cnr.si.cool.jconon.agid.config.ProtocolloConfiguration;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,6 @@ public class ProtocolloTest {
     private ProtocolloClient protocolloClient;
 
     @Test
-    @Disabled
     public void protocolla() {
         final ResponseType responseType = protocolloClient.protocolla(
                 "TEST",
