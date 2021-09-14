@@ -73,3 +73,7 @@ protocollo:
   password: secret
   tipoProtocollo: I
   tipoDocumento: DOMANDA DI CONCORSO
+
+print:
+  pronouncement:
+    emptymessage: <b>non valorizzato</b>
