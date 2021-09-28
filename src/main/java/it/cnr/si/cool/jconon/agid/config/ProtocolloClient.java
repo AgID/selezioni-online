@@ -29,14 +29,17 @@ public class ProtocolloClient extends WebServiceGatewaySupport {
     private final String password;
     private final String tipoProtocollo;
     private final String tipoDocumento;
+    private final String tipoDocumentoProtocollo;
 
-    public ProtocolloClient(String aoo, String ufficio, String utente, String password, String tipoProtocollo, String tipoDocumento) {
+    public ProtocolloClient(String aoo, String ufficio, String utente, String password,
+                            String tipoProtocollo, String tipoDocumentoProtocollo, String tipoDocumento) {
         this.aoo = aoo;
         this.ufficio = ufficio;
         this.utente = utente;
         this.password = password;
         this.tipoProtocollo = tipoProtocollo;
         this.tipoDocumento = tipoDocumento;
+        this.tipoDocumentoProtocollo = tipoDocumentoProtocollo;
     }
 
     public ResponseType protocolla(String oggetto, String mittente, String nomeFile, byte[] file) {
@@ -53,9 +56,14 @@ public class ProtocolloClient extends WebServiceGatewaySupport {
         protocolloType.setTipoProtocollo(tipoProtocollo);
         protocolloType.setOggetto(oggetto);
         protocolloType.setMittente(mittente);
-        protocolloType.setTipoDocumento(tipoDocumento);
+        protocolloType.setTipoDocumento(tipoDocumentoProtocollo);
         request.setProtocollo(protocolloType);
 
+        final AssegnatarioType assegnatarioType = objectFactory.createAssegnatarioType();
+        assegnatarioType.setUfficio(ufficio);
+        final ProtocolloType.Assegnatari assegnatari = new ProtocolloType.Assegnatari();
+        assegnatari.setAssegnatario(assegnatarioType);
+        protocolloType.getAssegnatari().add(assegnatari);
         final ProtocolloType.Documenti documenti = objectFactory.createProtocolloTypeDocumenti();
         final DocumentoType documentoType = objectFactory.createDocumentoType();
         documentoType.setTipoDocumento(tipoDocumento);

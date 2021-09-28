@@ -47,6 +47,7 @@ public class ProtocolloConfiguration {
                 properties.getUtente(),
                 properties.getPassword(),
                 properties.getTipoProtocollo(),
+                properties.getTipoDocumentoProtocollo(),
                 properties.getTipoDocumento()
         );
         client.setDefaultUri(properties.getUrl());

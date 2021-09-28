@@ -31,5 +31,7 @@ public class ProtocolloConfigurationProperties {
     private String utente;
     private String password;
     private String tipoProtocollo;
+    private String tipoDocumentoProtocollo;
     private String tipoDocumento;
+    private Boolean enable;
 }

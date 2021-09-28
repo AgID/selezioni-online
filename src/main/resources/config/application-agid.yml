@@ -72,8 +72,13 @@ protocollo:
   utente: test-protocollo-1@agid.gov.it
   password: secret
   tipoProtocollo: I
-  tipoDocumento: DOMANDA DI CONCORSO
+  tipoDocumentoProtocollo: ADESIONE_PAGO_PA
+  tipoDocumento: P
+  enable: false
 
+protocol:
+  register:
+    namespace: SEL - AGID - DOM
 print:
   pronouncement:
     emptymessage: <b>non valorizzato</b>

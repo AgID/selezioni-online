@@ -17,9 +17,11 @@
 
 package it.cnr.si.cool.jconon.agid.service;
 
+import it.almaviva.eprot.ResponseType;
 import it.cnr.cool.mail.model.AttachmentBean;
 import it.cnr.cool.mail.model.EmailMessage;
 import it.cnr.cool.security.service.impl.alfresco.CMISUser;
+import it.cnr.si.cool.jconon.agid.config.ProtocolloClient;
 import it.cnr.si.cool.jconon.cmis.model.JCONONDocumentType;
 import it.cnr.si.cool.jconon.cmis.model.JCONONFolderType;
 import it.cnr.si.cool.jconon.cmis.model.JCONONPolicyType;
@@ -35,11 +37,14 @@ import org.apache.chemistry.opencmis.commons.PropertyIds;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -48,8 +53,13 @@ import java.util.*;
 public class AGIDCallService extends CallService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AGIDCallService.class);
 
+    @Autowired
+    private ProtocolloClient protocolloClient;
+
     @Value("${mail.protocol.to}")
     private String mailProtocol;
+    @Value("${protocollo.enable}")
+    private Boolean protocolloEnable;
 
     @Override
     public void protocolApplication(Session session) {
@@ -85,13 +95,13 @@ public class AGIDCallService extends CallService {
             try {
                 OperationContext operationContext = OperationContextUtils.copyOperationContext(session.getDefaultContext());
                 operationContext.setOrderBy(PropertyIds.LAST_MODIFICATION_DATE);
-                for (CmisObject cmisObject  : call.getChildren(operationContext).getPage(Integer.MAX_VALUE)) {
+                for (CmisObject cmisObject : call.getChildren(operationContext).getPage(Integer.MAX_VALUE)) {
                     if (!cmisObject.getType().getId().equals(JCONONFolderType.JCONON_APPLICATION.value()) ||
                             !cmisObject.getPropertyValue(
                                     JCONONPropertyIds.APPLICATION_STATO_DOMANDA.value()).equals(ApplicationService.StatoDomanda.CONFERMATA.getValue())) {
                         continue;
                     }
-                    Folder domanda = (Folder)cmisObject;
+                    Folder domanda = (Folder) cmisObject;
                     final CMISUser cmisUser = userService.loadUserForConfirm(
                             domanda.getPropertyValue(JCONONPropertyIds.APPLICATION_USER.value())
                     );
@@ -102,43 +112,71 @@ public class AGIDCallService extends CallService {
                     try {
                         Map<String, Object> properties = new HashMap<String, Object>();
                         List<String> secondaryTypesId = new ArrayList<String>();
-                        for (SecondaryType secondaryType : secondaryTypes) {
-                            secondaryTypesId.add(secondaryType.getId());
-                        }
-                        secondaryTypesId.add(objectTypeProtocollo.getId());
-                        properties.put(PropertyIds.SECONDARY_OBJECT_TYPE_IDS, secondaryTypesId);
-                        domanda.updateProperties(properties);
                         final Document printApplication = (Document) session.getObject(
                                 competitionService.findAttachmentId(session, domanda.getId(), JCONONDocumentType.JCONON_ATTACHMENT_APPLICATION)
                         );
-                        EmailMessage message = new EmailMessage();
-                        message.setHtmlBody(Boolean.TRUE);
-                        message.setRecipients(Collections.singletonList(mailProtocol));
-                        message.setSubject(i18NService.getLabel(
+                        final String subject = i18NService.getLabel(
                                 "subject.protocol.application",
                                 Locale.ITALIAN,
                                 call.getPropertyValue(JCONONPropertyIds.CALL_CODICE.value()),
                                 domanda.getPropertyValue(PropertyIds.NAME)
-                                )
                         );
-                        message.setBody(i18NService.getLabel(
+                        final String sender = Optional.ofNullable(domanda.<String>getPropertyValue(JCONONPropertyIds.APPLICATION_EMAIL_COMUNICAZIONI.value()))
+                                .orElse(cmisUser.getEmail());
+                        final String body = i18NService.getLabel(
                                 "body.protocol.application",
                                 Locale.ITALIAN,
                                 domanda.<String>getPropertyValue(JCONONPropertyIds.APPLICATION_NOME.value())
                                         .concat(" ")
                                         .concat(domanda.getPropertyValue(JCONONPropertyIds.APPLICATION_COGNOME.value())).toUpperCase(),
                                 domanda.getPropertyValue(PropertyIds.OBJECT_ID)
-                                )
                         );
-                        message.setAttachments(Arrays.asList(new AttachmentBean(
-                                printApplication.getName(),
-                                IOUtils.toByteArray(printApplication.getContentStream().getStream())
-                        )));
-                        message.setSender(
-                                Optional.ofNullable(domanda.<String>getPropertyValue(JCONONPropertyIds.APPLICATION_EMAIL_COMUNICAZIONI.value()))
-                                        .orElse(cmisUser.getEmail())
-                        );
-                        mailService.send(message);
+                        if (protocolloEnable) {
+                            final ResponseType responseType = protocolloClient.protocolla(
+                                    subject,
+                                    sender,
+                                    printApplication.getName(),
+                                    IOUtils.toByteArray(printApplication.getContentStream().getStream())
+                            );
+                            if (responseType.getEsito().equalsIgnoreCase("0000")) {
+                                final Long numeroProtocollo = Long.valueOf(responseType.getNumeroProtocollo().getValue());
+                                final LocalDate dataProtocollo = LocalDate.parse(
+                                        responseType.getDataProtocollo().getValue(),
+                                        DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                                );
+                                printService.addProtocolToApplication(
+                                        printApplication,
+                                        numeroProtocollo,
+                                        Date.from(dataProtocollo.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+                                properties.put(PropertyIds.SECONDARY_OBJECT_TYPE_IDS, secondaryTypesId);
+                                properties.put(JCONONPropertyIds.PROTOCOLLO_NUMERO.value(), String.format("%7s", numeroProtocollo).replace(' ', '0'));
+                                properties.put(
+                                        JCONONPropertyIds.PROTOCOLLO_DATA.value(),
+                                        GregorianCalendar.from(dataProtocollo.atStartOfDay().atZone(ZoneId.systemDefault()))
+                                );
+                            } else {
+                                throw new IllegalArgumentException(responseType.getDescrizioneEsito());
+                            }
+                        } else {
+                            EmailMessage message = new EmailMessage();
+                            message.setHtmlBody(Boolean.TRUE);
+                            message.setRecipients(Collections.singletonList(mailProtocol));
+                            message.setSubject(subject);
+                            message.setBody(body);
+                            message.setAttachments(Arrays.asList(new AttachmentBean(
+                                    printApplication.getName(),
+                                    IOUtils.toByteArray(printApplication.getContentStream().getStream())
+                            )));
+                            message.setSender(sender);
+                            mailService.send(message);
+                        }
+                        for (SecondaryType secondaryType : secondaryTypes) {
+                            secondaryTypesId.add(secondaryType.getId());
+                        }
+                        secondaryTypesId.add(objectTypeProtocollo.getId());
+                        properties.put(PropertyIds.SECONDARY_OBJECT_TYPE_IDS, secondaryTypesId);
+                        domanda.updateProperties(properties);
+
                     } catch (Exception e) {
                         LOGGER.error("Cannot add protocol to application", e);
                     }
@@ -149,5 +187,4 @@ public class AGIDCallService extends CallService {
         }
         LOGGER.info("End protocol application for call {}", call.getName());
     }
-
 }

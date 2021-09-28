@@ -15,7 +15,6 @@
   ~      You should have received a copy of the GNU Affero General Public License
   ~      along with this program.  If not, see <https://www.gnu.org/licenses/>.
   -->
-
 <!-- Created with Jaspersoft Studio version 6.15.0.final utlizzo versione della libreria JasperReports6.15.0-dd49bfb94918336b8321d5507193f0169ead4e95  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DomandaConcorso" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="28" bottomMargin="28" scriptletClass="net.sf.jasperreports.engine.JRDefaultScriptlet" uuid="6fccba99-1156-4661-99e5-3238586360bb">
 	<property name="ireport.zoom" value="1.5"/>
@@ -51,7 +50,7 @@
 	<parameter name="MD5" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="QRCODE" class="java.io.InputStream" isForPrompting="false"/>
 	<parameter name="DIR_IMAGE" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/home/mspasiano/git/cool-jconon/cool-jconon-print/src/main/resources/it/cnr/si/cool/jconon/print/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/home/mspasiano/git/cool-jconon-agid/src/main/resources/it/cnr/si/cool/jconon/print/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="dichiarazioni" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="allegati" class="java.lang.String" isForPrompting="false"/>
@@ -298,9 +297,12 @@
 		</band>
 	</background>
 	<title>
-		<band height="82">
+		<band height="112">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<image scaleImage="FillFrame">
-				<reportElement x="0" y="0" width="515" height="80" uuid="10816825-524b-476c-b8d3-4e082faecce4"/>
+				<reportElement x="0" y="30" width="515" height="80" uuid="10816825-524b-476c-b8d3-4e082faecce4">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<imageExpression><![CDATA[$P{DIR_IMAGE}+"logo-print.png"]]></imageExpression>
 			</image>
 		</band>
