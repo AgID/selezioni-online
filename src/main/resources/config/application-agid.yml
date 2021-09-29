@@ -72,7 +72,7 @@ protocollo:
   utente: test-protocollo-1@agid.gov.it
   password: secret
   tipoProtocollo: I
-  tipoDocumentoProtocollo: ADESIONE_PAGO_PA
+  tipoDocumentoProtocollo: GENERICO
   tipoDocumento: P
   enable: false
 
