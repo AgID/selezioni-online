@@ -34,6 +34,8 @@ import it.cnr.si.opencmis.criteria.restrictions.Restrictions;
 import org.apache.chemistry.opencmis.client.api.*;
 import org.apache.chemistry.opencmis.client.util.OperationContextUtils;
 import org.apache.chemistry.opencmis.commons.PropertyIds;
+import org.apache.chemistry.opencmis.commons.impl.dataobjects.ContentStreamImpl;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -144,10 +149,16 @@ public class AGIDCallService extends CallService {
                                         responseType.getDataProtocollo().getValue(),
                                         DateTimeFormatter.ofPattern("dd/MM/yyyy")
                                 );
-                                printService.addProtocolToApplication(
-                                        printApplication,
-                                        numeroProtocollo,
-                                        Date.from(dataProtocollo.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+                                final File tempFile = File.createTempFile("protocollo", "pdf");
+                                URL protocolloURL = new URL(responseType.getUrlDocumento().getValue());
+                                FileUtils.copyURLToFile(protocolloURL, tempFile);
+
+                                ContentStreamImpl contentStream = new ContentStreamImpl();
+                                contentStream.setStream(new FileInputStream(tempFile));
+                                contentStream.setMimeType(printApplication.getContentStreamMimeType());
+                                contentStream.setFileName(printApplication.getContentStreamFileName());
+                                printApplication.setContentStream(contentStream, true, true);
+
                                 properties.put(PropertyIds.SECONDARY_OBJECT_TYPE_IDS, secondaryTypesId);
                                 properties.put(JCONONPropertyIds.PROTOCOLLO_NUMERO.value(), String.format("%7s", numeroProtocollo).replace(' ', '0'));
                                 properties.put(

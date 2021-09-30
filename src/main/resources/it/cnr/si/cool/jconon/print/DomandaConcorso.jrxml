@@ -297,10 +297,10 @@
 		</band>
 	</background>
 	<title>
-		<band height="112">
+		<band height="82">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<image scaleImage="FillFrame">
-				<reportElement x="0" y="30" width="515" height="80" uuid="10816825-524b-476c-b8d3-4e082faecce4">
+				<reportElement x="0" y="0" width="515" height="80" uuid="10816825-524b-476c-b8d3-4e082faecce4">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<imageExpression><![CDATA[$P{DIR_IMAGE}+"logo-print.png"]]></imageExpression>
