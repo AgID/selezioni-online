@@ -331,5 +331,137 @@
                 </property>
             </properties>
         </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_5">
+            <title>Dichiarazione 5 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_5">
+                    <title>Flag Dichiarazione 5</title>
+                    <description>Flag Dichiarazione 5</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_6">
+            <title>Dichiarazione 6 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_6">
+                    <title>Flag Dichiarazione 6</title>
+                    <description>Flag Dichiarazione 6</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_7">
+            <title>Dichiarazione 7 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_7">
+                    <title>Flag Dichiarazione 7</title>
+                    <description>Flag Dichiarazione 7</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_8">
+            <title>Dichiarazione 8 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_8">
+                    <title>Flag Dichiarazione 8</title>
+                    <description>Flag Dichiarazione 8</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_9">
+            <title>Dichiarazione 9 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_9">
+                    <title>Flag Dichiarazione 9</title>
+                    <description>Flag Dichiarazione 9</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_10">
+            <title>Dichiarazione 10 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_10">
+                    <title>Flag Dichiarazione 10</title>
+                    <description>Flag Dichiarazione 10</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_11">
+            <title>Dichiarazione 11 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_11">
+                    <title>Flag Dichiarazione 11</title>
+                    <description>Flag Dichiarazione 11</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_12">
+            <title>Dichiarazione 12 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_12">
+                    <title>Flag Dichiarazione 12</title>
+                    <description>Flag Dichiarazione 12</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_13">
+            <title>Dichiarazione 13 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_13">
+                    <title>Flag Dichiarazione 13</title>
+                    <description>Flag Dichiarazione 13</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_14">
+            <title>Dichiarazione 14 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_14">
+                    <title>Flag Dichiarazione 14</title>
+                    <description>Flag Dichiarazione 14</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="jconon_agid:aspect_dichiarazione_15">
+            <title>Dichiarazione 15 obbligatoria</title>
+            <parent>jconon_application:aspects</parent>
+            <properties>
+                <property name="jconon_agid:fl_dichiarazione_15">
+                    <title>Flag Dichiarazione 15</title>
+                    <description>Flag Dichiarazione 15</description>
+                    <type>d:boolean</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
     </aspects>
 </model>
