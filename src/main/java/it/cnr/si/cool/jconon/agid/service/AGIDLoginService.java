@@ -61,7 +61,7 @@ public class AGIDLoginService {
         cmisUser.setFirstName(userInfo.getFirstname());
         cmisUser.setLastName(userInfo.getLastname());
         cmisUser.setCodicefiscale(userInfo.getFiscalNumber());
-        cmisUser.setEmail(userInfo.getEmail());
+        cmisUser.setEmail(Optional.ofNullable(userInfo.getEmail()).orElse(" "));
         final Optional<CMISUser> userByCodiceFiscale =
                 Optional.ofNullable(userService.findUserByCodiceFiscale(cmisUser.getCodicefiscale(), cmisService.getAdminSession()));
         if (userByCodiceFiscale.isPresent()) {
