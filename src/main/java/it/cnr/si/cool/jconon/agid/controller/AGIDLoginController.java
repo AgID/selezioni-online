@@ -142,7 +142,14 @@ public class AGIDLoginController {
                         !Optional.ofNullable(userInfo)
                             .flatMap(userInfo1 -> Optional.ofNullable(userInfo1.getFiscalNumber()))
                             .isPresent()) {
-                userInfo.setFiscalNumber(calculateFiscalNumber(userInfo));
+                if (Optional.ofNullable(userInfo)
+                        .flatMap(userInfo1 -> Optional.ofNullable(userInfo1.getSub()))
+                        .filter(sub -> sub.startsWith("CIE"))
+                        .isPresent()) {
+                   userInfo.setFiscalNumber(userInfo.getSub().replace("CIE:TINIT-",""));
+                } else {
+                    userInfo.setFiscalNumber(calculateFiscalNumber(userInfo));
+                }
             }
             try {
                 if (!Optional.ofNullable(userInfo.getFirstname()).isPresent() ||
