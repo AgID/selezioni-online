@@ -46,10 +46,6 @@
             <version>${project.parent.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>it.cnr.si.cool.jconon</groupId>
-                    <artifactId>cool-jconon-spid</artifactId>
-                </exclusion>
-                <exclusion>
                     <groupId>com.lowagie</groupId>
                     <artifactId>itext</artifactId>
                 </exclusion>
@@ -102,7 +98,11 @@
             <artifactId>hazelcast</artifactId>
             <version>${hazelcast.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
