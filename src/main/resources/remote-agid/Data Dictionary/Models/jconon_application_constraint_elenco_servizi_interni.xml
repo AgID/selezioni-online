@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~    Copyright (C) 2019  Consiglio Nazionale delle Ricerche
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Affero General Public License as
+  ~     published by the Free Software Foundation, either version 3 of the
+  ~     License, or (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Affero General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Affero General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="jconon_application_constraint_elenco_servizi_interni:jconon_applicationModel"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.alfresco.org/model/dictionary/1.0 modelSchema.xsd">
+	<description>JCONON Dynamic Model</description>
+	<author>marco.spasiano</author>
+	<version>1.0</version>
+	<imports>
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+	</imports>
+	<namespaces>
+		<namespace uri="http://www.agid.gov.it/model/jconon_application_constraint_elenco_servizi_interni/cmis" prefix="jconon_application_constraint_elenco_servizi_interni" />
+	</namespaces>
+	<constraints>
+		<constraint name="jconon_application_constraint_elenco_servizi_interni:values" type="LIST">
+			<parameter name="allowedValues">
+				<list>
+					<value>Accessibilità e usabilità dei servizi digitali</value>
+					<value>Acquisti</value>
+					<value>Affari generali, linee guida e regolazione</value>
+					<value>Bilancio, contabilità e pagamenti</value>
+					<value>CERT-AgID</value>
+					<value>Comunicazione e relazioni esterne</value>
+					<value>Contenzioso</value>
+					<value>Difensore civico per il digitale</value>
+					<value>Documentali e modelli di marcatura</value>
+					<value>Gare strategiche</value>
+					<value>Gestione dati e banche dati</value>
+					<value>Gestione identità digitali: SPID e nodo eIDAS</value>
+					<value>Gestione servizi e piattaforme condivise</value>
+					<value>Iniziative internazionali</value>
+					<value>Logistica e servizi generali</value>
+					<value>Monitoraggio contratti di grande rilievo</value>
+					<value>Pareri</value>
+					<value>Performance e struttura tecnico-permanente di supporto all’OIV</value>
+					<value>Piano triennale</value>
+					<value>Procurement innovativo</value>
+					<value>Programmazione e controllo di gestione</value>
+					<value>Protezione tecnica</value>
+					<value>Protocollo</value>
+					<value>Qualificazione servizi fiduciari, infrastrutture e servizi cloud e conservatori</value>
+					<value>Responsabile della protezione dei dati</value>
+					<value>Sanzioni</value>
+					<value>Single Digital Gateway</value>
+					<value>Sistemi informativi interni</value>
+					<value>Sportello Unico Attività Produttive</value>
+					<value>Supporto al responsabile per la trasparenza e anticorruzione</value>
+					<value>Supporto alla Direzione e rapporto con gli organi istituzionali</value>
+					<value>Supporto e coordinamento iniziative PAL</value>
+					<value>Supporto progetti per la transizione al digitale</value>
+					<value>Trattamento economico, previdenziale e fiscale</value>
+					<value>Trattamento giuridico, reclutamento e relazioni sindacali</value>
+					<value>Vigilanza su trusted services</value>
+				</list>
+			</parameter>
+		</constraint>
+	</constraints>
+</model>
