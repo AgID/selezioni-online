@@ -34,19 +34,15 @@
 				<list>
 					<value>Accessibilità e usabilità dei servizi digitali</value>
 					<value>Acquisti</value>
-					<value>Affari generali, linee guida e regolazione</value>
 					<value>Bilancio, contabilità e pagamenti</value>
-					<value>CERT-AgID</value>
 					<value>Comunicazione e relazioni esterne</value>
 					<value>Contenzioso</value>
+					<value>Coordinamento iniziative PAL</value>
 					<value>Difensore civico per il digitale</value>
-					<value>Documentali e modelli di marcatura</value>
+					<value>Documentale e modelli di marcatura</value>
 					<value>Gare strategiche</value>
-					<value>Gestione dati e banche dati</value>
 					<value>Gestione identità digitali: SPID e nodo eIDAS</value>
 					<value>Gestione servizi e piattaforme condivise</value>
-					<value>Iniziative internazionali</value>
-					<value>Logistica e servizi generali</value>
 					<value>Monitoraggio contratti di grande rilievo</value>
 					<value>Pareri</value>
 					<value>Performance e struttura tecnico-permanente di supporto all’OIV</value>
@@ -54,19 +50,15 @@
 					<value>Procurement innovativo</value>
 					<value>Programmazione e controllo di gestione</value>
 					<value>Protezione tecnica</value>
-					<value>Protocollo</value>
 					<value>Qualificazione servizi fiduciari, infrastrutture e servizi cloud e conservatori</value>
 					<value>Responsabile della protezione dei dati</value>
-					<value>Sanzioni</value>
 					<value>Single Digital Gateway</value>
 					<value>Sistemi informativi interni</value>
 					<value>Sportello Unico Attività Produttive</value>
 					<value>Supporto al responsabile per la trasparenza e anticorruzione</value>
 					<value>Supporto alla Direzione e rapporto con gli organi istituzionali</value>
-					<value>Supporto e coordinamento iniziative PAL</value>
-					<value>Supporto progetti per la transizione al digitale</value>
-					<value>Trattamento economico, previdenziale e fiscale</value>
 					<value>Trattamento giuridico, reclutamento e relazioni sindacali</value>
+					<value>Vigilanza su obblighi di transizione digitale</value>
 					<value>Vigilanza su trusted services</value>
 				</list>
 			</parameter>
