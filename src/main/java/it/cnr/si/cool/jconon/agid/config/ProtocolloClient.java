@@ -61,6 +61,7 @@ public class ProtocolloClient extends WebServiceGatewaySupport {
 
         final AssegnatarioType assegnatarioType = objectFactory.createAssegnatarioType();
         assegnatarioType.setUfficio(ufficio);
+        assegnatarioType.setCompetenza(1);
         final ProtocolloType.Assegnatari assegnatari = new ProtocolloType.Assegnatari();
         assegnatari.setAssegnatario(assegnatarioType);
         protocolloType.getAssegnatari().add(assegnatari);
